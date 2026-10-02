@@ -1,0 +1,3 @@
+model,threads_intra_op,threads_inter_op,warmup_runs,timed_runs,batch_size,mean_ms,p95_ms,min_ms,max_ms,benchmark_input,excludes,limitations
+Model A,1,1,20,200,1,2.8241097353748046,3.2042405051470264,2.6356250018579885,6.381604005582631,in-memory random tensor with shape 1x64x64x3,disk I/O and image decoding/loading,CPU timing on this machine only; not a direct edge-device latency measurement.
+Model B,1,1,20,200,1,1.5922172144928481,2.2655842556559946,0.8731830021133646,4.379336998681538,in-memory random tensor with shape 1x64x64x3,disk I/O and image decoding/loading,CPU timing on this machine only; not a direct edge-device latency measurement.
