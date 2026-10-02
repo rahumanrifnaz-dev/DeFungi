@@ -1,0 +1,26 @@
+\section{Final Model Comparison}
+\textbf{Owner: Lavanathan.J -- 230371R}
+
+The final comparison focuses on Model B because it is the custom resource-constrained model, and compares it against the two pretrained lightweight models. The computational-cost indicator is the measured mean epoch time in the CPU-only environment.
+
+\begin{table}[H]
+\centering
+\caption{Final comparison of the resource-constrained and pretrained models.}
+\label{tab:final_comparison}
+\small
+\begin{tabularx}{\linewidth}{lXXX}
+\toprule
+Metric & Model B & MobileNetV2 & EfficientNetB0 \\
+\midrule
+Test accuracy & 0.6484 & 0.7427 & 0.7727 \\
+Macro precision & 0.6430 & 0.7981 & 0.8227 \\
+Macro recall & 0.6202 & 0.7420 & 0.7654 \\
+Total parameters & 14,272 & 2,264,389 & 4,055,976 \\
+Trainable parameters & 14,272 & 6,405 & 6,405 \\
+Memory/model size & 55.75 KB FP32 parameter storage & 9.25 MB saved model & 16.33 MB saved model \\
+Computational-cost indicator & 7.8730 s/epoch & 100.5135 s/epoch & 158.3490 s/epoch \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+EfficientNetB0 achieves the highest test accuracy, macro precision, and macro recall, but it also has the largest saved model size and the slowest measured epoch time. MobileNetV2 gives a strong accuracy improvement over Model B with a smaller saved model than EfficientNetB0. Model B is far smaller than both pretrained models and has the lowest measured training cost, but its accuracy is lower. Therefore, the preferred model depends on the deployment priority: Model B is most suitable when memory and compute are strict, while EfficientNetB0 is best when accuracy is the main goal and the larger model can be supported.

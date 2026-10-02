@@ -1,0 +1,15 @@
+{
+  "python": "3.12.3",
+  "platform": "Linux-6.17.0-14-generic-x86_64-with-glibc2.39",
+  "tensorflow": "2.21.0",
+  "numpy": "2.5.3",
+  "pandas": "3.0.6",
+  "matplotlib": "3.11.2",
+  "scikit_learn": "1.9.1",
+  "pillow": "12.3.0",
+  "tensorflow_physical_gpus": [],
+  "tensorflow_physical_cpus": [
+    "/physical_device:CPU:0"
+  ],
+  "gpu_available": false
+}

@@ -1,0 +1,100 @@
+{
+  "seed": 42,
+  "image_size_for_custom_models": [
+    64,
+    64,
+    3
+  ],
+  "normalization": "pixel values scaled to [0, 1] during dataset loading",
+  "total_usable_images": 9114,
+  "class_names": [
+    "H1",
+    "H2",
+    "H3",
+    "H5",
+    "H6"
+  ],
+  "images_per_class": {
+    "H1": 4404,
+    "H2": 2334,
+    "H3": 819,
+    "H5": 818,
+    "H6": 739
+  },
+  "split_counts": {
+    "test": 1368,
+    "train": 6379,
+    "validation": 1367
+  },
+  "image_extensions": {
+    ".jpg": 9114
+  },
+  "image_formats": {
+    "JPEG": 9114
+  },
+  "image_modes": {
+    "RGB": 9114
+  },
+  "image_dimensions": {
+    "500x500": 9114
+  },
+  "typical_image_dimensions": [
+    {
+      "width": 500,
+      "height": 500,
+      "count": 9114
+    }
+  ],
+  "dimensions_by_class_top_10": {
+    "H1": {
+      "500x500": 4404
+    },
+    "H2": {
+      "500x500": 2334
+    },
+    "H3": {
+      "500x500": 819
+    },
+    "H5": {
+      "500x500": 818
+    },
+    "H6": {
+      "500x500": 739
+    }
+  },
+  "unreadable_count": 0,
+  "unreadable_images": [],
+  "split_validation": {
+    "total_rows": 9114,
+    "unique_paths": 9114,
+    "duplicate_paths": [],
+    "split_counts": {
+      "test": 1368,
+      "train": 6379,
+      "validation": 1367
+    },
+    "per_split_class_counts": {
+      "test": {
+        "H1": 661,
+        "H2": 350,
+        "H3": 123,
+        "H5": 123,
+        "H6": 111
+      },
+      "train": {
+        "H1": 3082,
+        "H2": 1634,
+        "H3": 573,
+        "H5": 573,
+        "H6": 517
+      },
+      "validation": {
+        "H1": 661,
+        "H2": 350,
+        "H3": 123,
+        "H5": 122,
+        "H6": 111
+      }
+    }
+  }
+}

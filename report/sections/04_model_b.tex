@@ -1,0 +1,44 @@
+\section{Model B: Resource-Constrained CNN}
+\textbf{Owner: Panuharan.S -- 230462X}
+
+Model B was designed to reduce the parameter count while preserving the same input resolution and output classes as Model A. It replaces standard convolutional layers with depthwise separable convolutions and uses a smaller dense layer.
+
+\begin{table}[H]
+\centering
+\caption{Model B architecture and parameter count.}
+\label{tab:model_b_arch}
+\small
+\begin{tabularx}{\linewidth}{l l l r l r}
+\toprule
+Layer & Output Shape & Kernel & Filters/Units & Activation & Parameters \\
+\midrule
+Input & $64\times64\times3$ & -- & -- & -- & 0 \\
+SeparableConv2D & $64\times64\times32$ & $3\times3$ & 32 & ReLU & 155 \\
+MaxPool2D & $32\times32\times32$ & $2\times2$ & -- & -- & 0 \\
+SeparableConv2D & $32\times32\times64$ & $3\times3$ & 64 & ReLU & 2,400 \\
+MaxPool2D & $16\times16\times64$ & $2\times2$ & -- & -- & 0 \\
+SeparableConv2D & $16\times16\times96$ & $3\times3$ & 96 & ReLU & 6,816 \\
+MaxPool2D & $8\times8\times96$ & $2\times2$ & -- & -- & 0 \\
+GlobalAveragePooling2D & 96 & -- & -- & -- & 0 \\
+Dense & 48 & -- & 48 & ReLU & 4,656 \\
+Dense & 5 & -- & 5 & Softmax & 245 \\
+\midrule
+Total & -- & -- & -- & -- & 14,272 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+For a depthwise separable convolution with bias, the parameter count is
+\begin{equation}
+P_{\mathrm{sep}} = K_hK_wC_{\mathrm{in}} + C_{\mathrm{in}}C_{\mathrm{out}} + C_{\mathrm{out}}.
+\end{equation}
+The first term is the depthwise spatial convolution, the second term is the pointwise $1\times1$ convolution, and the final term is the bias. The calculations are:
+\begin{align}
+\mathrm{SepConv1} &= 3\cdot3\cdot3 + 3\cdot32 + 32 = 155,\\
+\mathrm{SepConv2} &= 3\cdot3\cdot32 + 32\cdot64 + 64 = 2,400,\\
+\mathrm{SepConv3} &= 3\cdot3\cdot64 + 64\cdot96 + 96 = 6,816,\\
+\mathrm{Dense48} &= (96 + 1)\cdot48 = 4,656,\\
+\mathrm{Dense5} &= (48 + 1)\cdot5 = 245.
+\end{align}
+
+Model B has 14,272 trainable parameters, which is below the 100,000-parameter target. Its FP32 parameter storage is 55.75 KB. Compared with Model A, it removes 87,557 parameters, a reduction of about 85.98\%.

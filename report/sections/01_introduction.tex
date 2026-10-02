@@ -1,0 +1,5 @@
+\section{Introduction}
+
+This assignment investigates compact convolutional neural networks for image classification under edge-device constraints. The main design objective is to obtain useful five-class classification performance while keeping memory use and computational cost low enough for resource-constrained deployment. The experiments use the DeFungi image dataset from the UCI Machine Learning Repository \cite{defungi_uci}.
+
+The work compares two custom CNNs and two ImageNet-initialized lightweight transfer-learning models. Model A is a conventional baseline CNN with standard convolutions. Model B is a smaller resource-constrained CNN based on depthwise separable convolutions. MobileNetV2 \cite{mobilenetv2} and EfficientNetB0 \cite{efficientnet} are then used as pretrained reference models to compare accuracy, memory footprint, and training cost.

@@ -1,0 +1,43 @@
+\section{Model A: Baseline CNN}
+\textbf{Owner: Rifnaz.K.R.M -- 230550P}
+
+Model A is a conventional CNN baseline using three standard convolutional layers followed by global average pooling and a small dense classifier. ReLU was used after the hidden convolutional and dense layers because it provides a simple non-linearity while avoiding saturation for positive activations. The final Softmax layer produces a probability distribution over the five fungi classes.
+
+\begin{table}[H]
+\centering
+\caption{Model A architecture and parameter count.}
+\label{tab:model_a_arch}
+\small
+\begin{tabularx}{\linewidth}{l l l r l r}
+\toprule
+Layer & Output Shape & Kernel & Filters/Units & Activation & Parameters \\
+\midrule
+Input & $64\times64\times3$ & -- & -- & -- & 0 \\
+Conv2D & $64\times64\times32$ & $3\times3$ & 32 & ReLU & 896 \\
+MaxPool2D & $32\times32\times32$ & $2\times2$ & -- & -- & 0 \\
+Conv2D & $32\times32\times64$ & $3\times3$ & 64 & ReLU & 18,496 \\
+MaxPool2D & $16\times16\times64$ & $2\times2$ & -- & -- & 0 \\
+Conv2D & $16\times16\times128$ & $3\times3$ & 128 & ReLU & 73,856 \\
+MaxPool2D & $8\times8\times128$ & $2\times2$ & -- & -- & 0 \\
+GlobalAveragePooling2D & 128 & -- & -- & -- & 0 \\
+Dense & 64 & -- & 64 & ReLU & 8,256 \\
+Dense & 5 & -- & 5 & Softmax & 325 \\
+\midrule
+Total & -- & -- & -- & -- & 101,829 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+For a standard convolution layer, the trainable parameter count is
+\begin{equation}
+P_{\mathrm{conv}} = (K_hK_wC_{\mathrm{in}} + 1)C_{\mathrm{out}},
+\end{equation}
+where the extra 1 accounts for the bias term per output channel. The layer-wise calculations are:
+\begin{align}
+\mathrm{Conv1} &= (3\cdot3\cdot3 + 1)\cdot32 = 896,\\
+\mathrm{Conv2} &= (3\cdot3\cdot32 + 1)\cdot64 = 18,496,\\
+\mathrm{Conv3} &= (3\cdot3\cdot64 + 1)\cdot128 = 73,856,\\
+\mathrm{Dense64} &= (128 + 1)\cdot64 = 8,256,\\
+\mathrm{Dense5} &= (64 + 1)\cdot5 = 325.
+\end{align}
+The total is therefore 101,829 trainable parameters. Global average pooling was used instead of flattening to reduce the classifier size after the convolutional feature extractor.

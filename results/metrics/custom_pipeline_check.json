@@ -1,0 +1,37 @@
+{
+  "split": "train",
+  "batch_size_configured": 32,
+  "image_shape": [
+    32,
+    64,
+    64,
+    3
+  ],
+  "label_shape": [
+    32
+  ],
+  "image_dtype": "float32",
+  "label_dtype": "int32",
+  "pixel_min": 0.1105736792087555,
+  "pixel_max": 0.8907705545425415,
+  "batch_label_min": 0,
+  "batch_label_max": 0,
+  "train_split_label_min": 0,
+  "train_split_label_max": 4,
+  "train_split_class_names": [
+    "H1",
+    "H2",
+    "H3",
+    "H5",
+    "H6"
+  ],
+  "expected_image_shape_per_sample": [
+    64,
+    64,
+    3
+  ],
+  "expected_label_range": [
+    0,
+    4
+  ]
+}

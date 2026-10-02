@@ -1,0 +1,26 @@
+\section{Optimizer Comparison}
+\textbf{Owner: Peranavan.K -- 230474K}
+
+The optimizer comparison used Model A in a controlled limited-training-batch experiment. Each optimizer was trained for 5 epochs using 30 training batches per epoch, while evaluation used the full validation split. The optimizer was selected by the lowest final validation loss, and the selected optimizer was then used for the full custom-model training runs.
+
+\begin{table}[H]
+\centering
+\caption{Controlled optimizer comparison.}
+\label{tab:optimizer}
+\begin{tabular}{lrrrr}
+\toprule
+Optimizer & Learning Rate & Momentum & Final Val. Accuracy & Final Val. Loss \\
+\midrule
+Adam & 0.001 & 0.0 & 0.5091 & 1.2509 \\
+SGD & 0.010 & 0.0 & 0.4835 & 1.4039 \\
+SGD + Momentum & 0.010 & 0.9 & 0.4835 & 1.3385 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Momentum updates maintain a velocity term:
+\begin{align}
+v_t &= \beta v_{t-1} + g_t,\\
+\theta_t &= \theta_{t-1} - \eta v_t,
+\end{align}
+where $g_t$ is the current gradient, $\eta$ is the learning rate, and $\beta$ is the momentum coefficient. In this controlled comparison, Adam with learning rate 0.001 achieved the lowest final validation loss of 1.2508898973464966. These values are optimizer-selection evidence only and are not the final test metrics.

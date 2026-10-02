@@ -1,0 +1,67 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage[numbers]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+
+\captionsetup{font=small,labelfont=bf}
+\renewcommand{\arraystretch}{1.15}
+
+\title{Resource-Constrained CNN for Edge Image Classification}
+\author{}
+\date{}
+
+\begin{document}
+
+\pagenumbering{gobble}
+\begin{titlepage}
+    \centering
+    \vspace*{1.0cm}
+    {\Large University of Moratuwa\par}
+    \vspace{0.3cm}
+    {\large Department of Electronic and Telecommunication Engineering\par}
+    \vspace{1.2cm}
+    {\large EN3150\par}
+    \vspace{0.2cm}
+    {\large Assignment 03\par}
+    \vspace{1.4cm}
+    {\LARGE\bfseries Resource-Constrained CNN for Edge Image Classification\par}
+    \vspace{1.6cm}
+    {\large Group Members\par}
+    \vspace{0.4cm}
+    \begin{tabular}{ll}
+        Lavanathan.J & 230371R \\
+        Panuharan.S & 230462X \\
+        Peranavan.K & 230474K \\
+        Rifnaz.K.R.M & 230550P \\
+    \end{tabular}
+    \vfill
+\end{titlepage}
+
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+\input{sections/01_introduction}
+\input{sections/02_dataset}
+\input{sections/03_model_a}
+\input{sections/04_model_b}
+\input{sections/05_optimizer}
+\input{sections/06_training_evaluation}
+\input{sections/07_pretrained_models}
+\input{sections/08_final_comparison}
+\input{sections/09_conclusion}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
