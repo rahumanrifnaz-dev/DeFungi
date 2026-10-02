@@ -1,0 +1,49 @@
+{
+  "seed": 42,
+  "note": "Existing verified project uses seed 42; not changed during compatibility evidence export.",
+  "total_usable_images": 9114,
+  "train_count": 6379,
+  "validation_count": 1367,
+  "test_count": 1368,
+  "all_paths_count": 9114,
+  "counts_match_total": true,
+  "overlap_counts": {
+    "train_validation": 0,
+    "train_test": 0,
+    "validation_test": 0
+  },
+  "overlap_paths": {
+    "train_validation": [],
+    "train_test": [],
+    "validation_test": []
+  },
+  "class_counts": {
+    "train": {
+      "H1": 3082,
+      "H2": 1634,
+      "H3": 573,
+      "H5": 573,
+      "H6": 517
+    },
+    "validation": {
+      "H1": 661,
+      "H2": 350,
+      "H3": 123,
+      "H5": 122,
+      "H6": 111
+    },
+    "test": {
+      "H1": 661,
+      "H2": 350,
+      "H3": 123,
+      "H5": 123,
+      "H6": 111
+    }
+  },
+  "source_files": {
+    "train": "data/processed/train.csv",
+    "validation": "data/processed/validation.csv",
+    "test": "data/processed/test.csv",
+    "compatibility_copies": "data/splits/*.csv"
+  }
+}

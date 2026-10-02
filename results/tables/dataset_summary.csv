@@ -1,0 +1,6 @@
+class_name,usable_images,train,validation,test,dominant_format,dominant_mode,dominant_dimensions
+H1,4404,3082,661,661,JPEG,RGB,500x500
+H2,2334,1634,350,350,JPEG,RGB,500x500
+H3,819,573,123,123,JPEG,RGB,500x500
+H5,818,573,122,123,JPEG,RGB,500x500
+H6,739,517,111,111,JPEG,RGB,500x500
