@@ -100,7 +100,7 @@ Separable convolution formula with bias: `P_sep = K_h K_w C_in + C_in C_out + C_
 
 Controlled optimizer experiment settings:
 
-- Model: Model A.
+- Model: Model B.
 - Epochs: 5.
 - Training batches per epoch: 30.
 - Validation: full validation split.

@@ -10,7 +10,7 @@ Status: PASS
 - Stratified split verified: 6,379 train, 1,367 validation, 1,368 test.
 - Duplicate paths across splits: 0.
 - Saved metrics used as source of truth: PASS.
-- Git initialization/push: NOT STARTED.
+- Git initialization/push: local Git initialized; GitHub remote/push not completed.
 
 ## Assignment Compliance
 

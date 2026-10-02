@@ -7,7 +7,7 @@ LATEX COMPILATION: PASS
 FINAL AUDIT: PASS
 GIT: INITIALIZED LOCALLY
 INITIAL COMMIT: COMPLETE
-GITHUB: NOT YET PUSHED
+GITHUB: READY
 
 IMPLEMENTATION: COMPLETE
 DATASET: COMPLETE
@@ -20,13 +20,16 @@ FINAL COMPARISON: COMPLETE
 LATEX REPORT: COMPLETE
 FINAL PDF: COMPLETE
 GITHUB PREPARATION: COMPLETE
-GITHUB REPOSITORY: WAITING FOR REMOTE URL
+GITHUB REPOSITORY: READY FOR REMOTE URL
 TEAM CONTRIBUTIONS: WAITING FOR MEMBERS
 FINAL PUSH: WAITING
+SUBMISSION AUDIT: PASS
+SUBMISSION PACKAGE: READY
+MOODLE SUBMISSION: NOT YET DONE
 
 ## Current Milestone
 
-The EN3150 Assignment 03 implementation, experiments, final audit, LaTeX report, and GitHub preparation documents are complete. Git has been initialized locally on the `main` branch. No GitHub remote has been added, and nothing has been pushed.
+The EN3150 Assignment 03 implementation, experiments, final audit, LaTeX report, GitHub preparation documents, and Moodle-ready submission package are complete. Git has been initialized locally on the `main` branch. No GitHub remote has been added, and nothing has been pushed.
 
 ## Completed Work
 
@@ -55,6 +58,9 @@ The EN3150 Assignment 03 implementation, experiments, final audit, LaTeX report,
 - Created final compliance audit at `FINAL_AUDIT.md`.
 - Created GitHub preparation files: `.gitignore`, `data/README.md`, `GITHUB_FILE_AUDIT.md`, `MEMBER_FILES.md`, `GITHUB_WORKFLOW.md`, `COLLABORATOR_SETUP.md`, and `MEMBER_GIT_INSTRUCTIONS.md`.
 - Initialized Git locally on the `main` branch without creating a remote or pushing.
+- Completed final submission audit in `SUBMISSION_AUDIT.md`.
+- Corrected the report wording for the optimizer experiment to match the saved Model B optimizer experiment output.
+- Created Moodle-ready local submission files under `submission/`, including `submission/main.pdf` and `submission/EN3150_A03_CODE_TEMP.zip`.
 
 ## Verified Environment
 
@@ -156,9 +162,9 @@ The EN3150 Assignment 03 implementation, experiments, final audit, LaTeX report,
 
 ## Remaining Work
 
-1. Create the shared GitHub repository and provide its URL.
-2. Add the GitHub remote and push the existing initial commit.
-3. Invite real collaborators and continue with the workflow in `GITHUB_WORKFLOW.md` and `MEMBER_GIT_INSTRUCTIONS.md`.
+1. Rename the temporary submission files using the lecturer's required group-number convention before Moodle upload.
+2. Upload to Moodle manually and reopen the uploaded files to verify integrity.
+3. Create the shared GitHub repository and provide its URL when ready to push.
 
 ## Human Action Required
 

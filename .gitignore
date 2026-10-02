@@ -42,6 +42,9 @@ data/raw/
 *.rar
 *.7z
 
+# Local Moodle/submission packaging artifacts
+submission/
+
 # LaTeX temporary files
 *.aux
 *.bbl
