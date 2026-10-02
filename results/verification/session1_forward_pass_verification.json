@@ -1,0 +1,29 @@
+{
+  "input_batch_shape": [
+    32,
+    64,
+    64,
+    3
+  ],
+  "input_dtype": "float32",
+  "pixel_min": 0.1105736792087555,
+  "pixel_max": 0.8907705545425415,
+  "label_shape": [
+    32
+  ],
+  "label_dtype": "int32",
+  "label_min": 0,
+  "label_max": 0,
+  "model_a_output_shape": [
+    32,
+    5
+  ],
+  "model_b_output_shape": [
+    32,
+    5
+  ],
+  "model_a_parameters": 101829,
+  "model_b_parameters": 14272,
+  "passed": true,
+  "note": "Forward pass only; no training performed."
+}

@@ -45,15 +45,16 @@ The EN3150 Assignment 03 implementation, experiments, final audit, LaTeX report,
 - Verified custom CNN parameter counts and model summaries.
 - Ran smoke tests for Model A and Model B; both passed.
 - Ran a controlled optimizer comparison; Adam was selected.
-- Trained and evaluated four models for 20 epochs each:
+- Trained and evaluated the two custom CNNs for 20 epochs each:
   - Model A with Adam
   - Model B with Adam
-  - MobileNetV2 transfer model
-  - EfficientNetB0 transfer model
+- Trained and evaluated the Session 3 transfer-learning models on the same canonical split:
+  - MobileNetV2 with ImageNet weights, 64x64 input, 3 frozen-head epochs, and 8 fine-tuning epochs
+  - EfficientNet-B0 with ImageNet weights, 64x64 input, 3 frozen-head epochs, and 8 fine-tuning epochs
 - Saved metrics JSON, history CSV, history plot, confusion matrix, and model file for each trained model.
 - Cleaned `report/report_data.md` using saved outputs only.
 - Copied report-ready figures under `report/figures/`.
-- Created final LaTeX report source under `report/main.tex`, `report/references.bib`, and `report/sections/`.
+- Created final LaTeX report source under `report/main.tex` and `report/references.bib`.
 - Compiled final report PDF at `report/main.pdf`.
 - Created final compliance audit at `FINAL_AUDIT.md`.
 - Created GitHub preparation files: `.gitignore`, `data/README.md`, `GITHUB_FILE_AUDIT.md`, `MEMBER_FILES.md`, `GITHUB_WORKFLOW.md`, `COLLABORATOR_SETUP.md`, and `MEMBER_GIT_INSTRUCTIONS.md`.
@@ -61,6 +62,14 @@ The EN3150 Assignment 03 implementation, experiments, final audit, LaTeX report,
 - Completed final submission audit in `SUBMISSION_AUDIT.md`.
 - Corrected the report wording for the optimizer experiment to match the saved Model B optimizer experiment output.
 - Created Moodle-ready local submission files under `submission/`, including `submission/main.pdf` and `submission/EN3150_A03_CODE_TEMP.zip`.
+- Created Session 1 compatibility/evidence checkpoint in `CODEX_SESSION_STATUS.md`.
+- Exported compatibility split CSVs under `data/splits/`.
+- Exported engineering evidence tables under `results/tables/`.
+- Exported verification JSON files under `results/verification/`.
+- Completed Session 2 custom-model artifact exports without retraining.
+- Exported optimizer comparison evidence to `results/tables/optimizer_comparison.csv` and `results/figures/optimizer_comparison.png`.
+- Exported raw custom-model evaluation artifacts under `results/raw/model_a/` and `results/raw/model_b/`.
+- Exported custom model comparison and CPU latency tables under `results/tables/`.
 
 ## Verified Environment
 
@@ -101,8 +110,8 @@ The EN3150 Assignment 03 implementation, experiments, final audit, LaTeX report,
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | Model A, Adam | 101,829 | 101,829 | 12.8958 | 0.695906432748538 | 0.7057296614536502 | 0.6647908943697292 | 0.6749622895035646 |
 | Model B, Adam | 14,272 | 14,272 | 7.8730 | 0.6483918128654971 | 0.6430123008645605 | 0.6202374219855493 | 0.6209343583512273 |
-| MobileNetV2 transfer | 2,264,389 | 6,405 | 100.5135 | 0.7426900584795322 | 0.7981119904272388 | 0.7419555816682123 | 0.766795935240905 |
-| EfficientNetB0 transfer | 4,055,976 | 6,405 | 158.3490 | 0.7726608187134503 | 0.8226531718072583 | 0.7653911731210724 | 0.7825692545633167 |
+| MobileNetV2 transfer | 2,264,389 | 1,609,285 | 27.5111 | 0.6907894736842105 | 0.723171326344764 | 0.6478240370391951 | 0.6671667868906008 |
+| EfficientNet-B0 transfer | 4,055,976 | 2,043,925 | 37.1727 | 0.7668128654970761 | 0.809860625155838 | 0.7855623497534866 | 0.7895498674861267 |
 
 ## Model Size And Parameters
 
@@ -115,14 +124,14 @@ The EN3150 Assignment 03 implementation, experiments, final audit, LaTeX report,
   - Estimated FP32 parameter storage: 55.75 KB
 - MobileNetV2 transfer:
   - Total parameters: 2,264,389
-  - Trainable parameters: 6,405
-  - Saved model size: 9.25 MB
-  - Transfer strategy: ImageNet backbone frozen; new five-class Dense head trained.
-- EfficientNetB0 transfer:
+  - Trainable parameters during fine-tuning: 1,609,285
+  - Saved selected model size: 22,000.13 KiB
+  - Transfer strategy: 3 frozen-head epochs at LR 0.001, then 8 fine-tune epochs of the upper 20 non-BatchNorm backbone layers at LR 0.0001.
+- EfficientNet-B0 transfer:
   - Total parameters: 4,055,976
-  - Trainable parameters: 6,405
-  - Saved model size: 16.33 MB
-  - Transfer strategy: ImageNet backbone frozen; new five-class Dense head trained.
+  - Trainable parameters during fine-tuning: 2,043,925
+  - Saved selected model size: 32,650.04 KiB
+  - Transfer strategy: 3 frozen-head epochs at LR 0.001, then 8 fine-tune epochs of the upper 30 non-BatchNorm backbone layers at LR 0.0001.
 
 ## Optimizer Experiment
 
@@ -139,18 +148,81 @@ The EN3150 Assignment 03 implementation, experiments, final audit, LaTeX report,
 - Report data: `report/report_data.md`
 - LaTeX entry point: `report/main.tex`
 - Bibliography: `report/references.bib`
-- Report sections:
-  - `report/sections/01_introduction.tex`
-  - `report/sections/02_dataset.tex`
-  - `report/sections/03_model_a.tex`
-  - `report/sections/04_model_b.tex`
-  - `report/sections/05_optimizer.tex`
-  - `report/sections/06_training_evaluation.tex`
-  - `report/sections/07_pretrained_models.tex`
-  - `report/sections/08_final_comparison.tex`
-  - `report/sections/09_conclusion.tex`
+- Final report source is consolidated in `report/main.tex`; older `report/sections/` files are retained in the workspace but are not the Session 4 report source.
 - Final PDF: `report/main.pdf`
 - Report figures: `report/figures/`
+
+## Session 1 Evidence Artifacts
+
+- Session checkpoint: `CODEX_SESSION_STATUS.md`
+- Compatibility split files:
+  - `data/splits/train.csv`
+  - `data/splits/validation.csv`
+  - `data/splits/test.csv`
+- Evidence tables:
+  - `results/tables/dataset_summary.csv`
+  - `results/tables/model_a_architecture.csv`
+  - `results/tables/model_b_architecture.csv`
+  - `results/tables/depthwise_parameter_comparison.csv`
+  - `results/tables/custom_model_static_resources.csv`
+  - `results/tables/custom_model_macs.csv`
+- Verification files:
+  - `results/verification/split_verification.json`
+  - `results/verification/custom_pipeline_check.json`
+  - `results/verification/smoke_test_results.json`
+  - `results/verification/model_parameter_checks.json`
+  - `results/verification/session1_model_resource_verification.json`
+  - `results/verification/session1_forward_pass_verification.json`
+
+## Session 2 Custom Model Artifacts
+
+- Optimizer comparison:
+  - `results/tables/optimizer_comparison.csv`
+  - `results/figures/optimizer_comparison.png`
+- Model A raw outputs:
+  - `results/raw/model_a/history.csv`
+  - `results/raw/model_a/metrics.json`
+  - `results/raw/model_a/classification_report.csv`
+  - `results/raw/model_a/confusion_matrix.csv`
+  - `results/raw/model_a/test_predictions.csv`
+  - `results/raw/model_a/model_a_selected.keras`
+- Model B raw outputs:
+  - `results/raw/model_b/history.csv`
+  - `results/raw/model_b/metrics.json`
+  - `results/raw/model_b/classification_report.csv`
+  - `results/raw/model_b/confusion_matrix.csv`
+  - `results/raw/model_b/test_predictions.csv`
+  - `results/raw/model_b/model_b_selected.keras`
+- Report-ready custom figures:
+  - `results/figures/model_a_training_curves.png`
+  - `results/figures/model_b_training_curves.png`
+  - `results/figures/model_a_confusion_matrix_report.png`
+  - `results/figures/model_b_confusion_matrix_report.png`
+- Custom comparison tables:
+  - `results/tables/custom_models.csv`
+  - `results/tables/custom_latency.csv`
+  - `results/tables/session2_interpretation_notes.md`
+
+## Session 3 Transfer Learning Artifacts
+
+- MobileNetV2 raw outputs:
+  - `results/raw/mobilenetv2/history.csv`
+  - `results/raw/mobilenetv2/metrics.json`
+  - `results/raw/mobilenetv2/classification_report.csv`
+  - `results/raw/mobilenetv2/confusion_matrix.csv`
+  - `results/raw/mobilenetv2/test_predictions.csv`
+- EfficientNet-B0 raw outputs:
+  - `results/raw/efficientnetb0/history.csv`
+  - `results/raw/efficientnetb0/metrics.json`
+  - `results/raw/efficientnetb0/classification_report.csv`
+  - `results/raw/efficientnetb0/confusion_matrix.csv`
+  - `results/raw/efficientnetb0/test_predictions.csv`
+- Final comparison:
+  - `results/tables/pretrained_transfer_models.csv`
+  - `results/tables/pretrained_transfer_macs.csv`
+  - `results/tables/pretrained_transfer_latency.csv`
+  - `results/tables/final_comparison.csv`
+  - `results/tables/session3_transfer_tradeoff_notes.md`
 
 ## LaTeX Verification
 

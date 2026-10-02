@@ -1,72 +1,62 @@
 # GitHub File Audit
 
-This audit identifies which project artifacts should be committed and which should remain local or ignored.
+This audit records what should be committed to the public EN3150 Assignment 03 repository and what must remain local or ignored.
 
-| File/Directory | Size | Keep / Ignore | Reason |
+## Commit / Ignore Decisions
+
+| File/Directory | Approx. size | Commit / Ignore | Reason |
 |---|---:|---|---|
-| `src/` | 184 KB | KEEP | Source code for dataset preparation, models, training, evaluation, verification, and report data generation. |
-| `README.md` | small | KEEP | Project setup, reproducibility, and results summary. |
-| `requirements.txt` | small | KEEP | Python dependency list. |
-| `PROJECT_STATUS.md` | small | KEEP | Final project status and verified values. |
-| `FINAL_AUDIT.md` | small | KEEP | Final assignment compliance audit. |
-| `report_data.md` | 10 KB | KEEP | Top-level copy of the verified report data for GitHub review. |
-| `report/report_data.md` | 10 KB | KEEP | Canonical report data used by the report. |
-| `data/processed/` | 1.2 MB | KEEP | Lightweight split metadata needed for reproducibility. |
-| `results/metrics/` | 88 KB | KEEP | Verified metrics, histories, summaries, and audits. |
-| `results/figures/` | 500 KB | KEEP | Training history and class-distribution figures. |
-| `results/confusion_matrices/` | 220 KB | KEEP | Confusion matrix figures for evaluation. |
-| `report/` source files | small | KEEP | LaTeX report source, bibliography, and sections. |
-| `report/figures/` | 500 KB | KEEP | Report-ready copied figures. |
-| `report/main.pdf` | 764 KB | KEEP | Final compiled assignment report. |
-| `.gitignore` | small | KEEP | Prevents accidental upload of generated, raw, or large files. |
-| `MEMBER_FILES.md` | small | KEEP | Maps real group-member responsibilities to files. |
-| `GITHUB_WORKFLOW.md` | small | KEEP | Safe collaboration workflow for the real group members. |
-| `.venv/` | 2.5 GB | IGNORE | Local Python virtual environment, reproducible with `requirements.txt`. |
-| `data/raw/defungi.zip` | 150 MB | IGNORE | Downloaded dataset archive; should not be uploaded to GitHub. |
-| `data/raw/defungi/` | 170 MB | IGNORE | Raw DeFungi image dataset; users should download from UCI. |
-| `results/models/*.keras` | 28 MB | IGNORE | Trained model binaries; reproducible from source and metrics are already preserved. |
+| `README.md` | small | COMMIT | Public setup, dataset, model, result, and report instructions. |
+| `requirements.txt` | small | COMMIT | Reproducible Python dependencies. |
+| `src/` | small | COMMIT | Source code for dataset preparation, models, training, evaluation, verification, and demo utilities. |
+| `data/README.md` | small | COMMIT | Documents official DeFungi source and expected local raw-data folder. |
+| `data/processed/*.csv` | 1.1 MB total | COMMIT | Lightweight canonical split metadata. |
+| `data/splits/*.csv` | 349 KB total | COMMIT | Compatibility copy of canonical split metadata. |
+| `results/tables/` | small | COMMIT | Verified summary tables, MACs, latency, optimizer, and final comparison evidence. |
+| `results/figures/` | small | COMMIT | Verified generated plots used for analysis/reporting. |
+| `results/verification/` | small | COMMIT | Verification JSON artifacts for split, pipeline, model checks, and smoke tests. |
+| `results/raw/*/*.csv` and `results/raw/*/metrics.json` | small | COMMIT | Raw lightweight histories, reports, confusion matrices, predictions, and metrics. |
+| `results/raw/**/*.keras` | 219 KB to 33 MB each | IGNORE | Trained model binaries/checkpoints are reproducible and unnecessary for GitHub review. |
+| `results/models/*.keras` | 219 KB to 17 MB each | IGNORE | Trained model binaries are reproducible from source. |
+| `report/main.tex` | small | COMMIT | Final LaTeX report source. |
+| `report/references.bib` | small | COMMIT | Bibliography for final report. |
+| `report/main.pdf` | 1.0 MB | COMMIT | Final compiled report; required for review. |
+| `report/figures/` | small | COMMIT | Report-ready figures referenced by `report/main.tex`. |
+| `report/sections/` | small | COMMIT | Retained report section source files, updated to final verified values. |
+| `report_data.md`, `report/report_data.md` | small | COMMIT | Verified report-data summaries for reviewers. |
+| `PROJECT_STATUS.md`, `CODEX_SESSION_STATUS.md` | small | COMMIT | Project/session status and final push checkpoint. |
+| `FINAL_AUDIT.md`, `SUBMISSION_AUDIT.md` | small | COMMIT | Compliance and submission audit notes. |
+| `viva/` | small | COMMIT | Optional but useful viva preparation notes. |
+| `.venv/` | large | IGNORE | Local virtual environment, reproducible from `requirements.txt`. |
+| `data/raw/defungi.zip` | 156 MB | IGNORE | Downloaded DeFungi archive; official source is documented instead. |
+| `data/raw/defungi/` | thousands of images | IGNORE | Raw DeFungi dataset must not be pushed. |
+| `submission/` | local package files | IGNORE | Moodle packaging artifacts and temporary ZIP/PDF copies. |
 | `src/__pycache__/` | small | IGNORE | Python bytecode cache. |
-| `report/main.bbl` and LaTeX aux files | small | IGNORE | Generated LaTeX temporary/build files; report can be rebuilt from source. |
+| LaTeX aux files | small | IGNORE | Generated build files such as `.aux`, `.bbl`, `.log`, `.out`, `.toc`. |
+| Archives `*.zip`, `*.rar`, `*.7z` | variable | IGNORE | Avoid accidental dataset/submission archive uploads. |
 
-Credential scan result: no credential-like assignments, OAuth secrets, authorization headers, or private keys were found in source/docs/results outside ignored raw/model/environment directories.
+## Large File Review
 
-Machine-specific path scan result: no `/home/...`, Windows user paths, or desktop-specific absolute paths were found in source/docs/results outside ignored directories.
+| File | Size | Decision | Reason |
+|---|---:|---|---|
+| `data/raw/defungi.zip` | 156 MB | IGNORE | Raw dataset archive; users download from UCI. |
+| `results/raw/efficientnetb0/efficientnetb0_best_validation.keras` | 33.4 MB | IGNORE | Reproducible checkpoint; metrics/CSV evidence committed instead. |
+| `results/raw/efficientnetb0/efficientnetb0_selected.keras` | 33.4 MB | IGNORE | Reproducible selected model; metrics/CSV evidence committed instead. |
+| `results/raw/mobilenetv2/mobilenetv2_best_validation.keras` | 22.5 MB | IGNORE | Reproducible checkpoint; metrics/CSV evidence committed instead. |
+| `results/raw/mobilenetv2/mobilenetv2_selected.keras` | 22.5 MB | IGNORE | Reproducible selected model; metrics/CSV evidence committed instead. |
+| `results/models/efficientnetb0_transfer.keras` | 17.1 MB | IGNORE | Reproducible older model artifact. |
+| `results/models/mobilenetv2_transfer.keras` | 9.7 MB | IGNORE | Reproducible older model artifact. |
+| `results/models/model_a_adam.keras` | 1.3 MB | IGNORE | Reproducible custom model artifact. |
+| `results/models/model_b_adam.keras` | 225 KB | IGNORE | Reproducible custom model artifact. |
+| `report/main.pdf` | 1.0 MB | COMMIT | Final assignment report. |
+| `data/processed/splits.csv` | 610 KB | COMMIT | Lightweight canonical split metadata. |
 
-Large file policy: raw data, archives, virtual environments, and trained model binaries are ignored. Verified metrics, figures, processed split CSVs, report source, and final PDF are kept.
+## Safety Scan Summary
 
-## Proposed Repository Summary Before Git Initialization
+- Sensitive-value scan: no credential files or private assignments found outside ignored directories.
+- Machine-specific path scan: no repository files selected for commit contain local absolute user-home paths.
+- Neighbor-report scan: no neighboring-group identifiers or dataset/report terms were found in the final report or selected project content.
 
-### Files To Commit
+## Final Decision
 
-- Project documentation: `README.md`, `requirements.txt`, `PROJECT_STATUS.md`, `FINAL_AUDIT.md`, `report_data.md`, `GITHUB_FILE_AUDIT.md`, `MEMBER_FILES.md`, `GITHUB_WORKFLOW.md`
-- Dataset instructions and lightweight split metadata: `data/README.md`, `data/processed/splits.csv`, `data/processed/train.csv`, `data/processed/validation.csv`, `data/processed/test.csv`
-- Source code: `src/*.py`
-- Verified results: `results/metrics/`, `results/figures/`, `results/confusion_matrices/`
-- Final report: `report/main.tex`, `report/main.pdf`, `report/references.bib`, `report/sections/`, `report/figures/`, `report/report_data.md`
-
-### Files To Ignore
-
-- Local environment: `.venv/`, `venv/`, `env/`
-- Raw dataset and archives: `data/raw/`, `*.zip`, `*.rar`, `*.7z`
-- Trained model binaries: `results/models/*.keras`, plus any `*.h5`
-- Python caches: `__pycache__/`, `*.pyc`
-- LaTeX build files: `*.aux`, `*.bbl`, `*.blg`, `*.fdb_latexmk`, `*.fls`, `*.log`, `*.out`, `*.toc`
-- IDE/OS/Jupyter cache files
-
-### Large Files
-
-- `.venv/`: 2.5 GB, ignored.
-- `data/raw/defungi.zip`: 150 MB, ignored.
-- `data/raw/defungi/`: 170 MB, ignored.
-- `results/models/*.keras`: 28 MB total, ignored.
-- `report/main.pdf`: 764 KB, kept.
-- `data/processed/`: 1.2 MB, kept.
-
-### Member File Distribution
-
-- Rifnaz.K.R.M -- 230550P: dataset preparation, canonical split, Model A, dataset and Model A report sections.
-- Panuharan.S -- 230462X: Model B, depthwise separable analysis, efficiency/parameter calculations, Model B report section.
-- Peranavan.K -- 230474K: optimizer comparison, custom model training/evaluation, metrics/confusion matrices, Model A/B comparison report section.
-- Lavanathan.J -- 230371R: MobileNetV2, EfficientNetB0, pretrained evaluation, final comparison report section.
-
-Audit decision: PASS. The repository is ready for local Git initialization, with raw data, virtual environment files, and trained model binaries excluded by `.gitignore`.
+Commit source code, README, requirements, canonical split metadata, lightweight verified results, figures, report source/PDF, audits, and viva notes. Exclude raw DeFungi images, virtual environments, archives, Python caches, LaTeX temporary files, submission ZIPs, and trained model binaries.

@@ -50,14 +50,14 @@ This audit was performed for the final Moodle preparation phase. No model retrai
 | Model A vs B | Training time per epoch | PASS | 12.8958 s and 7.8730 s. |
 | Model A vs B | Test accuracy | PASS | Comparison table. |
 | Model A vs B | Trade-off discussion | PASS | Training/evaluation section. |
-| Pretrained | Two models used | PASS | MobileNetV2 and EfficientNetB0. |
+| Pretrained | Two models used | PASS | MobileNetV2 and EfficientNet-B0. |
 | Pretrained | MobileNetV2 | PASS | Source, metrics, figure, report section. |
-| Pretrained | EfficientNetB0 | PASS | Source, metrics, figure, report section. |
+| Pretrained | EfficientNet-B0 | PASS | Source, metrics, figure, report section. |
 | Pretrained | Same underlying dataset split membership | PASS | Pretrained loader uses split CSVs. |
 | Pretrained | Fine-tuning/transfer-learning method explained | PASS | Frozen ImageNet backbone and new head described. |
 | Pretrained | Test metrics reported | PASS | Accuracy, precision, recall, F1. |
-| Pretrained | Total parameters reported | PASS | MobileNetV2 2,264,389; EfficientNetB0 4,055,976. |
-| Pretrained | Model size MB reported | PASS | 9.25 MB and 16.33 MB. |
+| Pretrained | Total parameters reported | PASS | MobileNetV2 2,264,389; EfficientNet-B0 4,055,976. |
+| Pretrained | Serialized model sizes reported | PASS | 22,000.13 KiB and 32,650.04 KiB. |
 | Final comparison | Model B compared with pretrained models | PASS | Final comparison table. |
 | Final comparison | Accuracy discussed | PASS | Final comparison section. |
 | Final comparison | Memory footprint discussed | PASS | Final comparison section. |
@@ -74,7 +74,7 @@ This audit was performed for the final Moodle preparation phase. No model retrai
 | Code | Commented | PASS | Important utilities and reports are understandable; no large refactor needed. |
 | Code | Runnable | PASS | Import checks, help commands, compileall, and split loading passed. |
 | Code | File paths portable | PASS | Project-relative paths used; no machine-specific absolute paths found. |
-| Code | No secrets | PASS | Credential-like pattern scan passed. |
+| Code | Sensitive-value scan | PASS | Credential-like pattern scan passed. |
 | Code | No missing imports | PASS | `python -m src.verify_imports` passed. |
 
 ## Numerical Consistency
@@ -86,8 +86,8 @@ All final report values were cross-checked against `results/metrics/*.json`, `da
 - Split counts: train 6,379; validation 1,367; test 1,368.
 - Model A: 101,829 parameters; 397.77 KB; 12.8958 s/epoch; accuracy 0.695906432748538; macro precision 0.7057296614536502; macro recall 0.6647908943697292.
 - Model B: 14,272 parameters; 55.75 KB; 7.8730 s/epoch; accuracy 0.6483918128654971; macro precision 0.6430123008645605; macro recall 0.6202374219855493.
-- MobileNetV2: 2,264,389 total parameters; 9.25 MB; 100.5135 s/epoch; accuracy 0.7426900584795322; macro precision 0.7981119904272388; macro recall 0.7419555816682123.
-- EfficientNetB0: 4,055,976 total parameters; 16.33 MB; 158.3490 s/epoch; accuracy 0.7726608187134503; macro precision 0.8226531718072583; macro recall 0.7653911731210724.
+- MobileNetV2: 2,264,389 total parameters; 22,000.13 KiB serialized selected model; 27.5111 s/epoch; accuracy 0.6907894736842105; macro precision 0.723171326344764; macro recall 0.6478240370391951.
+- EfficientNet-B0: 4,055,976 total parameters; 32,650.04 KiB serialized selected model; 37.1727 s/epoch; accuracy 0.7668128654970761; macro precision 0.809860625155838; macro recall 0.7855623497534866.
 
 One genuine inconsistency was fixed: the optimizer experiment was incorrectly described as using Model A in `report_data.md` and `report/sections/05_optimizer.tex`. The saved optimizer experiment uses Model B, so only those report-source occurrences were corrected and `report/main.pdf` was rebuilt.
 
@@ -101,7 +101,7 @@ Result: PASS. The only hit was the legitimate LaTeX `tabularx` column specificat
 
 Status: PASS.
 
-The report text was reviewed for long copied passages, copied abstracts, copied documentation wording, citation-free borrowed technical explanations, and placeholder-like generic text. No long copied passage was found. External ideas for DeFungi, MobileNetV2, and EfficientNetB0 are cited in the report.
+The report text was reviewed for long copied passages, copied abstracts, copied documentation wording, citation-free borrowed technical explanations, and placeholder-like generic text. No long copied passage was found. External ideas for DeFungi, MobileNetV2, and EfficientNet-B0 are cited in the report.
 
 ## Code Quality Check
 
@@ -133,7 +133,7 @@ Status: PASS.
 Status: PASS.
 
 - `report/main.pdf` exists.
-- PDF is 10 A4 pages.
+- PDF is 14 A4 pages.
 - Title page contains the university, department, assignment, title, and all four students.
 - Figures are embedded.
 - References are present.

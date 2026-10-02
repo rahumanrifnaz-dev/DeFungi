@@ -23,8 +23,8 @@ Status: PASS
 | Optimizer comparison | PASS | `results/metrics/optimizer_experiment_results.json` |
 | Full custom-model training/evaluation | PASS | `model_a_adam_metrics.json`, `model_b_adam_metrics.json` |
 | Precision, recall, confusion matrices | PASS | Saved metrics JSON files and copied report figures |
-| MobileNetV2 transfer-learning model | PASS | `mobilenetv2_transfer_metrics.json` |
-| EfficientNetB0 transfer-learning model | PASS | `efficientnetb0_transfer_metrics.json` |
+| MobileNetV2 transfer-learning model | PASS | `results/raw/mobilenetv2/metrics.json` |
+| EfficientNet-B0 transfer-learning model | PASS | `results/raw/efficientnetb0/metrics.json` |
 | Final accuracy/memory/computational-cost comparison | PASS | `report/report_data.md`, final report tables |
 | LaTeX report source created | PASS | `report/main.tex`, `report/sections/*.tex`, `report/references.bib` |
 
@@ -32,8 +32,8 @@ Status: PASS
 
 - Model A: 101,829 parameters; test accuracy 0.695906432748538.
 - Model B: 14,272 parameters; test accuracy 0.6483918128654971.
-- MobileNetV2: 2,264,389 total parameters; test accuracy 0.7426900584795322.
-- EfficientNetB0: 4,055,976 total parameters; test accuracy 0.7726608187134503.
+- MobileNetV2: 2,264,389 total parameters; test accuracy 0.6907894736842105.
+- EfficientNet-B0: 4,055,976 total parameters; test accuracy 0.7668128654970761.
 - Optimizer selection: Adam selected by lowest final validation loss, 1.2508898973464966.
 
 Report tables round some displayed metrics to four decimal places, but all rounded values were derived from the exact saved outputs listed in `report/report_data.md`.

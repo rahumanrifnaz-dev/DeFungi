@@ -25,13 +25,16 @@ data/
         *.jpg
 ```
 
-The `data/raw/` directory is intentionally ignored by Git to avoid uploading thousands of image files. The lightweight processed split metadata is kept in `data/processed/`:
+The `data/raw/` directory is intentionally ignored by Git to avoid uploading thousands of image files. The lightweight processed split metadata is kept in `data/processed/` and mirrored in `data/splits/`:
 
 ```text
 data/processed/splits.csv
 data/processed/train.csv
 data/processed/validation.csv
 data/processed/test.csv
+data/splits/train.csv
+data/splits/validation.csv
+data/splits/test.csv
 ```
 
 To recreate the canonical split after placing the dataset, run from the project root:

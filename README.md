@@ -37,8 +37,8 @@ Depthwise separable CNN designed for resource-constrained deployment. It uses 14
 
 ### Pretrained Models
 
-- MobileNetV2 with frozen ImageNet backbone
-- EfficientNetB0 with frozen ImageNet backbone
+- MobileNetV2 with ImageNet weights and two-stage transfer learning
+- EfficientNet-B0 with ImageNet weights and two-stage transfer learning
 
 ## Group Members
 
@@ -60,12 +60,14 @@ Depthwise separable CNN designed for resource-constrained deployment. It uses 14
 ├── report_data.md
 ├── data/
 │   ├── README.md
-│   └── processed/
+│   ├── processed/
+│   └── splits/
 ├── src/
 ├── results/
-│   ├── confusion_matrices/
 │   ├── figures/
-│   └── metrics/
+│   ├── raw/
+│   ├── tables/
+│   └── verification/
 ├── report/
 │   ├── main.tex
 │   ├── main.pdf
@@ -128,8 +130,8 @@ python -m src.smoke_test --train-batches 3 --validation-batches 1
 python -m src.optimizer_experiment --epochs 5 --train-batches 30
 python -m src.train_custom --model model_a --epochs 20
 python -m src.train_custom --model model_b --epochs 20
-python -m src.train_pretrained --model mobilenetv2 --epochs 20
-python -m src.train_pretrained --model efficientnetb0 --epochs 20
+python -m src.session3_transfer train --models mobilenetv2 efficientnetb0 --head-epochs 3 --fine-tune-epochs 8 --batch-size 32 --image-size 64 64
+python -m src.session3_transfer finalize --warmup-runs 20 --timed-runs 200
 python -m src.make_report_data
 ```
 
@@ -141,10 +143,10 @@ Expensive training does not need to be rerun to inspect the completed submission
 |---|---:|---:|---:|---|
 | Model A | 0.6959 | 0.7057 | 0.6648 | 101,829 parameters |
 | Model B | 0.6484 | 0.6430 | 0.6202 | 14,272 parameters, 55.75 KB FP32 |
-| MobileNetV2 | 0.7427 | 0.7981 | 0.7420 | 2,264,389 total parameters, 9.25 MB saved model |
-| EfficientNetB0 | 0.7727 | 0.8227 | 0.7654 | 4,055,976 total parameters, 16.33 MB saved model |
+| MobileNetV2 | 0.6908 | 0.7232 | 0.6478 | 2,264,389 parameters, 22,000.13 KiB saved model |
+| EfficientNet-B0 | 0.7668 | 0.8099 | 0.7856 | 4,055,976 parameters, 32,650.04 KiB saved model |
 
-The same canonical split was reused across all models. Adam with learning rate 0.001 was selected from the controlled optimizer comparison.
+The same canonical split was reused across all models. Adam with learning rate 0.001 was selected from the controlled optimizer comparison. The final pretrained comparison uses the Session 3 two-stage 64 x 64 transfer-learning artifacts in `results/raw/` and `results/tables/final_comparison.csv`.
 
 ## Report
 

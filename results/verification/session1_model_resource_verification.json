@@ -1,0 +1,13 @@
+{
+  "model_a_parameters": 101829,
+  "model_a_expected_parameters": 101829,
+  "model_a_matches_expected": true,
+  "model_b_parameters": 14272,
+  "model_b_limit": 100000,
+  "model_b_within_limit": true,
+  "model_a_architecture_csv": "results/tables/model_a_architecture.csv",
+  "model_b_architecture_csv": "results/tables/model_b_architecture.csv",
+  "depthwise_comparison_csv": "results/tables/depthwise_parameter_comparison.csv",
+  "static_resources_csv": "results/tables/custom_model_static_resources.csv",
+  "macs_csv": "results/tables/custom_model_macs.csv"
+}

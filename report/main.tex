@@ -11,11 +11,13 @@
 \usepackage[numbers]{natbib}
 \usepackage[hidelinks]{hyperref}
 \usepackage{caption}
+\usepackage{url}
 
 \captionsetup{font=small,labelfont=bf}
 \renewcommand{\arraystretch}{1.15}
+\setlength{\tabcolsep}{5pt}
 
-\title{Resource-Constrained CNN for Edge Image Classification}
+\title{Resource-Constrained CNN Design and Transfer Learning for DeFungi Image Classification}
 \author{}
 \date{}
 
@@ -33,7 +35,7 @@
     \vspace{0.2cm}
     {\large Assignment 03\par}
     \vspace{1.4cm}
-    {\LARGE\bfseries Resource-Constrained CNN for Edge Image Classification\par}
+    {\LARGE\bfseries Resource-Constrained CNN Design and Transfer Learning for DeFungi Image Classification\par}
     \vspace{1.6cm}
     {\large Group Members\par}
     \vspace{0.4cm}
@@ -51,17 +53,496 @@
 \clearpage
 \pagenumbering{arabic}
 
-\input{sections/01_introduction}
-\input{sections/02_dataset}
-\input{sections/03_model_a}
-\input{sections/04_model_b}
-\input{sections/05_optimizer}
-\input{sections/06_training_evaluation}
-\input{sections/07_pretrained_models}
-\input{sections/08_final_comparison}
-\input{sections/09_conclusion}
+\begin{abstract}
+This report presents a verified DeFungi image-classification study using 9,114 RGB JPEG images from five fungal classes. A deterministic stratified split was used with 6,379 training images, 1,367 validation images, and 1,368 test images. All custom models operated on 64$\times$64 inputs. Model A, a standard convolutional neural network with 101,829 trainable parameters, achieved 0.6959 test accuracy. Model B, a lightweight depthwise-separable CNN with 14,272 trainable parameters, achieved 0.6484 test accuracy while reducing parameters by 85.98\% and serialized model size by 82.33\% relative to Model A. Two ImageNet transfer-learning models were also evaluated on the same sample membership at 64$\times$64 input: MobileNetV2 achieved 0.6908 test accuracy and EfficientNet-B0 achieved 0.7668. The final comparison shows that EfficientNet-B0 gave the highest measured accuracy, while Model B had the smallest disk footprint, lowest included MAC estimate, and lowest measured CPU batch-1 latency. The results therefore show a practical trade-off: transfer learning improves accuracy, but the custom lightweight model is more attractive when memory and CPU latency are the dominant constraints.
+\end{abstract}
+
+\section{Introduction}
+Edge image-classification systems often need to balance accuracy against memory, computation, and latency. The purpose of this assignment was to design and evaluate convolutional neural networks for a resource-constrained DeFungi classification task, then compare the custom models with lightweight pretrained architectures.
+
+The work was organized around four model families. Model A used standard convolution layers and acted as the stronger custom baseline. Model B used depthwise-separable convolution to reduce the parameter count below the assignment target of 100,000 parameters. MobileNetV2 \cite{sandler2018mobilenetv2} and EfficientNet-B0 \cite{tan2019efficientnet} were evaluated as lightweight state-of-the-art transfer-learning alternatives. All results reported here come from saved project artifacts only; no report value is taken from a rerun or from an external group report.
+
+\section{Dataset and Data Preparation}
+\subsection{DeFungi Dataset}
+The dataset used in this project was DeFungi from the UCI Machine Learning Repository \cite{uci_defungi}. The verified local copy contains 9,114 usable images. All verified images are JPEG, RGB, and 500$\times$500 pixels. No unreadable images were recorded in the dataset verification output.
+
+\subsection{Dataset Classes}
+The classification problem has five target classes: H1, H2, H3, H5, and H6. Table~\ref{tab:dataset_split} gives the verified class counts and split allocation. The class distribution is imbalanced: H1 has 4,404 images, while H6 has 739 images.
+
+\begin{table}[H]
+\centering
+\caption{Verified DeFungi class counts and stratified split allocation.}
+\label{tab:dataset_split}
+\begin{tabular}{lrrrr}
+\toprule
+Class & Total & Train & Validation & Test \\
+\midrule
+H1 & 4404 & 3082 & 661 & 661 \\
+H2 & 2334 & 1634 & 350 & 350 \\
+H3 & 819 & 573 & 123 & 123 \\
+H5 & 818 & 573 & 122 & 123 \\
+H6 & 739 & 517 & 111 & 111 \\
+\midrule
+Total & 9114 & 6379 & 1367 & 1368 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\linewidth]{figures/class_distribution.png}
+\caption{Verified class distribution generated from the saved dataset summary.}
+\label{fig:class_distribution}
+\end{figure}
+
+\subsection{\texorpdfstring{64$\times$64 Input}{64x64 Input}}
+The assignment required compact image inputs for a resource-constrained setting. The custom data pipeline therefore resized all images to 64$\times$64 with three channels and normalized pixel values to $[0,1]$. The Session 3 transfer-learning runs also used 64$\times$64 input because both requested ImageNet backbones loaded correctly at this resolution. This preserves consistent sample membership and avoids silently switching to a larger ImageNet input size.
+
+\subsection{Stratified 70/15/15 Split}
+A deterministic stratified split was created once using seed 42. The split proportions were approximately 70\% training, 15\% validation, and 15\% test for each class. The saved verification files report 9,114 unique paths, no duplicate split paths, and the split counts shown in Table~\ref{tab:dataset_split}. The test set was used only for final evaluation.
+
+\subsection{Preprocessing and Augmentation}
+For custom CNN training, images were decoded as RGB, resized to 64$\times$64, converted to floating point, and scaled by $1/255$. The saved training evidence does not depend on a new split or on test-time selection. For pretrained models, the same split membership was used, but the Keras preprocessing function associated with each backbone was applied. MobileNetV2 used \texttt{mobilenet\_v2.preprocess\_input}; EfficientNet-B0 used the Keras EfficientNet preprocessing entry point recorded in the metrics file.
+
+\section{Custom CNN Architectures}
+\subsection{Model A}
+Model A is a standard CNN baseline using three 3$\times$3 convolution blocks with ReLU activation, max pooling after each convolution, global average pooling, and a small dense classifier. It has 101,829 trainable parameters. The use of global average pooling avoids a large flattening layer and keeps the classifier compact.
+
+\begin{table}[H]
+\centering
+\caption{Model A architecture summary from the verified architecture CSV.}
+\label{tab:model_a_arch}
+\begin{tabular}{llllr}
+\toprule
+Layer & Type & Output shape & Activation & Parameters \\
+\midrule
+Input & InputLayer & $64\times64\times3$ & -- & 0 \\
+Conv1 & Conv2D 32, 3$\times$3 & $64\times64\times32$ & ReLU & 896 \\
+Pool1 & MaxPool 2$\times$2 & $32\times32\times32$ & -- & 0 \\
+Conv2 & Conv2D 64, 3$\times$3 & $32\times32\times64$ & ReLU & 18496 \\
+Pool2 & MaxPool 2$\times$2 & $16\times16\times64$ & -- & 0 \\
+Conv3 & Conv2D 128, 3$\times$3 & $16\times16\times128$ & ReLU & 73856 \\
+Pool3 & MaxPool 2$\times$2 & $8\times8\times128$ & -- & 0 \\
+GAP & GlobalAveragePooling2D & 128 & -- & 0 \\
+Dense & Dense 64 & 64 & ReLU & 8256 \\
+Output & Dense 5 & 5 & Softmax & 325 \\
+\midrule
+Total & & & & 101829 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Model B}
+Model B follows the same high-level classifier pattern but replaces standard convolution with depthwise-separable convolution. It has 14,272 trainable parameters, well below the 100,000-parameter target. The convolution stages use 32, 64, and 96 output channels, followed by global average pooling and a 48-unit dense layer.
+
+\begin{table}[H]
+\centering
+\caption{Model B architecture summary from the verified architecture CSV.}
+\label{tab:model_b_arch}
+\begin{tabular}{llllr}
+\toprule
+Layer & Type & Output shape & Activation & Parameters \\
+\midrule
+Input & InputLayer & $64\times64\times3$ & -- & 0 \\
+SepConv1 & SeparableConv2D 32 & $64\times64\times32$ & ReLU & 155 \\
+Pool1 & MaxPool 2$\times$2 & $32\times32\times32$ & -- & 0 \\
+SepConv2 & SeparableConv2D 64 & $32\times32\times64$ & ReLU & 2400 \\
+Pool2 & MaxPool 2$\times$2 & $16\times16\times64$ & -- & 0 \\
+SepConv3 & SeparableConv2D 96 & $16\times16\times96$ & ReLU & 6816 \\
+Pool3 & MaxPool 2$\times$2 & $8\times8\times96$ & -- & 0 \\
+GAP & GlobalAveragePooling2D & 96 & -- & 0 \\
+Dense & Dense 48 & 48 & ReLU & 4656 \\
+Output & Dense 5 & 5 & Softmax & 245 \\
+\midrule
+Total & & & & 14272 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Depthwise Separable Convolution}
+For a standard convolution with kernel size $K_h\times K_w$, $C_{in}$ input channels, $C_{out}$ output channels, and one bias per output channel, the parameter count used in this project is
+\begin{equation}
+P_{\text{std}} = (K_hK_wC_{in}+1)C_{out}.
+\end{equation}
+For Keras \texttt{SeparableConv2D} with bias enabled, the saved implementation uses one depthwise spatial kernel per input channel, a 1$\times$1 pointwise convolution, and one bias per output channel:
+\begin{equation}
+P_{\text{sep}} = K_hK_wC_{in}+C_{in}C_{out}+C_{out}.
+\end{equation}
+The reduction percentage is
+\begin{equation}
+R = \frac{P_{\text{std}}-P_{\text{sep}}}{P_{\text{std}}}\times100\%.
+\end{equation}
+
+\begin{table}[H]
+\centering
+\caption{Verified parameter comparison for standard and depthwise-separable stages.}
+\label{tab:depthwise_params}
+\begin{tabular}{lrrrr}
+\toprule
+Stage & Standard params & Depthwise & Pointwise+bias & Reduction \\
+\midrule
+3$\rightarrow$32 & 896 & 27 & 128 & 82.70\% \\
+32$\rightarrow$64 & 18496 & 288 & 2112 & 87.02\% \\
+64$\rightarrow$96 & 55392 & 576 & 6240 & 87.69\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Parameter Calculation}
+The full-model parameter reduction from Model A to Model B is 87,557 parameters:
+\begin{equation}
+\frac{101829-14272}{101829}\times100 = 85.98\%.
+\end{equation}
+This reduction is mostly due to replacing expensive spatial convolution kernels with depthwise and pointwise operations in Model B.
+
+\subsection{Hardware-Aware Activation Selection}
+Both custom models used ReLU in hidden layers. ReLU is appropriate for hardware-aware design because it mainly computes $\max(0,x)$ and does not require exponentials. The output layer used softmax because the task is single-label five-class classification.
+
+\section{Optimizer Selection and Tuning}
+\subsection{SGD}
+The controlled optimizer pilot included stochastic gradient descent with learning rate 0.01. It reached a final validation loss of 1.4039 after five pilot epochs.
+
+\subsection{SGD with Momentum}
+Momentum adds a velocity term that accumulates previous updates:
+\begin{align}
+v_t &= \mu v_{t-1} - \eta \nabla_\theta J(\theta_t),\\
+\theta_{t+1} &= \theta_t + v_t.
+\end{align}
+The momentum pilot used $\mu=0.9$ and learning rate 0.01. It reached a final validation loss of 1.3385.
+
+\subsection{Selected Adaptive Optimizer}
+Adam \cite{kingma2015adam} was the selected adaptive optimizer. The pilot used learning rate 0.001 and reached the lowest final validation loss among the tested optimizers.
+
+\subsection{Experimental Comparison}
+The optimizer comparison was a controlled pilot on Model B using 30 training batches per epoch and the full validation split. It was not treated as a final test result. Table~\ref{tab:optimizer} summarizes the final pilot epoch for each optimizer.
+
+\begin{table}[H]
+\centering
+\caption{Final epoch of the verified optimizer pilot.}
+\label{tab:optimizer}
+\begin{tabular}{lrrrr}
+\toprule
+Optimizer & LR & Momentum & Final validation loss & Final validation accuracy \\
+\midrule
+Adam & 0.001 & 0.0 & 1.2509 & 0.5091 \\
+SGD & 0.010 & 0.0 & 1.4039 & 0.4835 \\
+SGD + momentum & 0.010 & 0.9 & 1.3385 & 0.4835 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\linewidth]{figures/optimizer_comparison.png}
+\caption{Optimizer pilot curves generated from the saved optimizer comparison artifact.}
+\label{fig:optimizer}
+\end{figure}
+
+\subsection{Selected Optimizer}
+Adam was selected because it had the lowest final validation loss in the controlled optimizer comparison. The final Model A and Model B training runs therefore used Adam.
+
+\section{Custom CNN Training and Evaluation}
+\subsection{Training Setup}
+Model A and Model B were trained for 20 epochs with batch size 32 on the fixed DeFungi split. The validation set was used during training monitoring, and the test set was used only for final reported metrics. Accuracy, macro precision, macro recall, and macro F1 were computed from the saved test predictions.
+
+For a test set of $N$ samples, accuracy is
+\begin{equation}
+\text{Accuracy} = \frac{1}{N}\sum_{i=1}^{N}\mathbf{1}(\hat{y}_i=y_i).
+\end{equation}
+Macro precision and macro recall average per-class precision and recall equally across the five classes:
+\begin{align}
+\text{Macro Precision} &= \frac{1}{C}\sum_{c=1}^{C}\frac{TP_c}{TP_c+FP_c},\\
+\text{Macro Recall} &= \frac{1}{C}\sum_{c=1}^{C}\frac{TP_c}{TP_c+FN_c}.
+\end{align}
+
+\subsection{Training Curves}
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.49\linewidth}
+\centering
+\includegraphics[width=\linewidth]{figures/model_a_history.png}
+\caption{Model A}
+\end{subfigure}
+\begin{subfigure}{0.49\linewidth}
+\centering
+\includegraphics[width=\linewidth]{figures/model_b_history.png}
+\caption{Model B}
+\end{subfigure}
+\caption{Training and validation curves for the custom CNNs.}
+\label{fig:custom_histories}
+\end{figure}
+
+\subsection{Test Results}
+Table~\ref{tab:custom_metrics} reports the verified custom CNN test metrics. Model A achieved higher test accuracy and macro recall than Model B, but Model B used far fewer parameters.
+
+\begin{table}[H]
+\centering
+\caption{Verified custom CNN test metrics.}
+\label{tab:custom_metrics}
+\begin{tabular}{lrrrr}
+\toprule
+Model & Accuracy & Macro precision & Macro recall & Macro F1 \\
+\midrule
+Model A & 0.6959 & 0.7057 & 0.6648 & 0.6750 \\
+Model B & 0.6484 & 0.6430 & 0.6202 & 0.6209 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Confusion Matrices}
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.49\linewidth}
+\centering
+\includegraphics[width=\linewidth]{figures/model_a_confusion_matrix.png}
+\caption{Model A}
+\end{subfigure}
+\begin{subfigure}{0.49\linewidth}
+\centering
+\includegraphics[width=\linewidth]{figures/model_b_confusion_matrix.png}
+\caption{Model B}
+\end{subfigure}
+\caption{Verified custom CNN confusion matrices on the canonical test set.}
+\label{fig:custom_confusions}
+\end{figure}
+
+The most visible confusion pattern is between H1 and H2. Model A classified 583 of 661 H1 test images correctly but assigned 194 H2 images to H1. Model B also favored H1 strongly: it classified 521 H1 images correctly, but 171 H2 images were predicted as H1. H3 was difficult for both custom models, with recalls of 0.4715 for Model A and 0.3252 for Model B. H6 was comparatively strong, with recalls of 0.8739 for Model A and 0.8829 for Model B.
+
+\subsection{Model A vs Model B Resource Comparison}
+The MAC estimates in this report include convolution, depthwise convolution, separable convolution components where applicable, and dense MACs. Bias, activation, pooling, normalization, and data-loading costs are not included. For a convolution layer,
+\begin{equation}
+\text{MACs}_{\text{conv}} = H_{out}W_{out}C_{out}K_hK_wC_{in}.
+\end{equation}
+For dense layers,
+\begin{equation}
+\text{MACs}_{\text{dense}} = N_{in}N_{out}.
+\end{equation}
+
+\begin{table}[H]
+\centering
+\caption{Verified custom model resource comparison. Serialized size is KiB.}
+\label{tab:custom_resources}
+\begin{tabular}{lrrrrr}
+\toprule
+Model & Params & Size & MACs & Mean epoch (s) & CPU mean (ms) \\
+\midrule
+Model A & 101829 & 1241.37 & 41296192 & 12.8958 & 2.8241 \\
+Model B & 14272 & 219.41 & 4621040 & 7.8730 & 1.5922 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Relative to Model A, Model B reduced parameters by 85.98\%, serialized model size by 82.33\%, and the included MAC estimate by 88.81\%. The measured CPU batch-1 mean latency also decreased by 43.62\%, from 2.8241 ms to 1.5922 ms. Runtime did not decrease as much as MACs, which is an important observation for edge deployment: framework overhead, memory access, and available optimized kernels also affect latency.
+
+\section{Lightweight State-of-the-Art Models}
+\subsection{MobileNetV2}
+MobileNetV2 uses inverted residual blocks and depthwise separable convolutions to reduce computation while preserving representational capacity \cite{sandler2018mobilenetv2}. In this project, the ImageNet pretrained MobileNetV2 feature extractor was adapted to a five-class DeFungi head.
+
+\subsection{EfficientNet-B0}
+EfficientNet-B0 is the baseline EfficientNet model family member, designed around compound scaling of depth, width, and resolution \cite{tan2019efficientnet}. The project used ImageNet pretrained weights and replaced the classifier with a five-class DeFungi head.
+
+\subsection{Transfer-Learning Strategy}
+Both pretrained models used a two-stage transfer-learning strategy. Stage 1 froze the feature extractor and trained the new classifier head for three epochs. Stage 2 fine-tuned an upper subset of the backbone with a smaller learning rate. Validation loss selected the saved checkpoint, and the test set was not used for model selection.
+
+\begin{table}[H]
+\centering
+\caption{Verified transfer-learning setup.}
+\label{tab:transfer_strategy}
+\begin{tabular}{lrrrrr}
+\toprule
+Model & Input & Head epochs & Fine-tune epochs & Head LR & Fine-tune LR \\
+\midrule
+MobileNetV2 & 64$\times$64 & 3 & 8 & 0.001 & 0.0001 \\
+EfficientNet-B0 & 64$\times$64 & 3 & 8 & 0.001 & 0.0001 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Results}
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.49\linewidth}
+\centering
+\includegraphics[width=\linewidth]{figures/mobilenetv2_history.png}
+\caption{MobileNetV2}
+\end{subfigure}
+\begin{subfigure}{0.49\linewidth}
+\centering
+\includegraphics[width=\linewidth]{figures/efficientnetb0_history.png}
+\caption{EfficientNet-B0}
+\end{subfigure}
+\caption{Training and validation curves for the 64$\times$64 transfer-learning runs.}
+\label{fig:pretrained_histories}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.49\linewidth}
+\centering
+\includegraphics[width=\linewidth]{figures/mobilenetv2_confusion_matrix.png}
+\caption{MobileNetV2}
+\end{subfigure}
+\begin{subfigure}{0.49\linewidth}
+\centering
+\includegraphics[width=\linewidth]{figures/efficientnetb0_confusion_matrix.png}
+\caption{EfficientNet-B0}
+\end{subfigure}
+\caption{Verified transfer-learning confusion matrices on the canonical test set.}
+\label{fig:pretrained_confusions}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Verified transfer-learning test metrics.}
+\label{tab:pretrained_metrics}
+\begin{tabular}{lrrrr}
+\toprule
+Model & Accuracy & Macro precision & Macro recall & Macro F1 \\
+\midrule
+MobileNetV2 & 0.6908 & 0.7232 & 0.6478 & 0.6672 \\
+EfficientNet-B0 & 0.7668 & 0.8099 & 0.7856 & 0.7895 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+EfficientNet-B0 gave the strongest test accuracy and macro recall of all four evaluated models. Its confusion matrix shows stronger recognition of H3, H5, and H6 than the custom models, but H2 remains challenging: 177 H2 test samples were still classified as H1. MobileNetV2 was close to Model A in accuracy but did not improve over Model A under the verified 64$\times$64 transfer-learning setup.
+
+\section{Final Comparison}
+\subsection{Accuracy}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\linewidth]{figures/final_accuracy_comparison.png}
+\caption{Final test accuracy comparison from the verified final comparison CSV.}
+\label{fig:final_accuracy}
+\end{figure}
+
+EfficientNet-B0 achieved the highest test accuracy at 0.7668. Model A was the best custom model at 0.6959. MobileNetV2 achieved 0.6908, slightly below Model A in this 64$\times$64 run. Model B achieved 0.6484, giving up 0.0475 absolute accuracy relative to Model A in exchange for a much smaller footprint.
+
+\subsection{Parameter Count}
+Table~\ref{tab:final_comparison} gives the final comparison over all four models. Model B is the smallest by parameter count, with 14,272 parameters. The pretrained models contain millions of parameters because their ImageNet feature extractors are retained.
+
+\subsection{Memory Footprint}
+Model B has the smallest serialized model artifact at 219.41 KiB. Model A is 1241.37 KiB. MobileNetV2 and EfficientNet-B0 are much larger at 22000.13 KiB and 32650.04 KiB respectively. These serialized sizes are measured saved-model artifact sizes, not only theoretical FP32 parameter storage.
+
+\subsection{Computational Cost}
+The final comparison includes the measured CPU batch-1 latency and the included MAC estimate. Model B has the lowest included MAC estimate and the lowest measured CPU latency. MobileNetV2 has fewer included MACs than Model A in this counting method, but its measured CPU latency is far higher on this machine. This demonstrates that MAC count alone does not determine runtime.
+
+\begin{table}[H]
+\centering
+\caption{Final verified comparison. Serialized model size is KiB; latency is CPU batch-1 in milliseconds.}
+\label{tab:final_comparison}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Model & Params & Size & MACs & Mean latency & P95 latency & Accuracy & Macro P & Macro R \\
+\midrule
+Model A & 101829 & 1241.37 & 41296192 & 2.8241 & 3.2042 & 0.6959 & 0.7057 & 0.6648 \\
+Model B & 14272 & 219.41 & 4621040 & 1.5922 & 2.2656 & 0.6484 & 0.6430 & 0.6202 \\
+MobileNetV2 & 2264389 & 22000.13 & 24454912 & 170.1065 & 198.2038 & 0.6908 & 0.7232 & 0.6478 \\
+EfficientNet-B0 & 4055976 & 32650.04 & 31972992 & 322.2855 & 357.6918 & 0.7668 & 0.8099 & 0.7856 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{figures/final_resource_comparison.png}
+\caption{Final resource comparison. The y-axes are logarithmic to show custom and pretrained models in one figure.}
+\label{fig:final_resources}
+\end{figure}
+
+\subsection{Edge Deployment Trade-offs}
+There is no single universally best model in the verified results. EfficientNet-B0 is the accuracy leader, but it has the largest parameter count, largest serialized model, and slowest measured CPU latency. Model B is the resource leader, but its accuracy is lower than Model A and EfficientNet-B0. For a very tight memory or latency budget, Model B is the strongest candidate among the measured models. For a less constrained device where accuracy matters more than disk footprint and CPU latency, EfficientNet-B0 is more attractive.
+
+\section{Discussion}
+The custom-model comparison shows the intended effect of depthwise-separable convolution clearly. Model B reduced parameters by 85.98\%, serialized size by 82.33\%, and the included MAC estimate by 88.81\% compared with Model A. Its CPU mean latency also decreased, but only by 43.62\%. Therefore, the empirical runtime result follows the same direction as the MAC reduction, but not the same scale.
+
+The accuracy cost of the lightweight custom design was measurable. Model A reached 0.6959 accuracy, while Model B reached 0.6484. This difference is consistent with Model B having fewer channels and fewer trainable parameters. The confusion matrices show that H1 was generally easier because it is also the largest class. H2 was often confused with H1 by all models. H3 was especially weak for the custom models, while EfficientNet-B0 improved H3 recall to 0.8130.
+
+The pretrained models show the benefit and cost of transferred ImageNet representations. EfficientNet-B0 improved the best custom accuracy by 0.0709 absolute accuracy. However, the serialized EfficientNet-B0 model was 32650.04 KiB, compared with 219.41 KiB for Model B. MobileNetV2 did not outperform Model A in this run, but it still had a much larger serialized footprint and much higher measured CPU latency than both custom CNNs.
+
+Parameter count alone should not be used as a complete edge-performance claim. It does not directly measure RAM usage, cache behavior, kernel launch overhead, implementation quality, or energy. MAC estimates also exclude operations such as activation functions, pooling, normalization, and memory movement. The CPU latency measurements are useful for comparing these saved Keras models on this computer, but they are not microcontroller measurements.
+
+The main limitations are the use of a single split, a single seed, limited hyperparameter search, possible class imbalance, and no physical edge-device energy measurement. The transfer-learning results also rely on external ImageNet prior knowledge. Finally, 64$\times$64 input is much smaller than standard ImageNet transfer-learning practice, so the pretrained models were intentionally evaluated under an assignment-consistent but resolution-constrained interpretation.
+
+\section{Conclusion}
+The assignment objective was achieved using verified DeFungi artifacts. Model A provided the strongest custom CNN accuracy, while Model B satisfied the lightweight design goal with 14,272 parameters and the smallest measured resource footprint. EfficientNet-B0 achieved the best overall accuracy, but with the largest serialized model and highest CPU latency among the four evaluated models. The final recommendation depends on deployment priorities: Model B is the most appropriate measured option for tight memory and latency constraints, while EfficientNet-B0 is preferable when accuracy is the dominant requirement and the platform can support the extra resource cost.
 
 \bibliographystyle{plainnat}
 \bibliography{references}
+
+\appendix
+\section{Layer-Wise Architecture Tables}
+\begin{table}[H]
+\centering
+\caption{Complete Model A layer table from the verified architecture CSV.}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llllllr}
+\toprule
+Layer & Class & Output shape & Kernel & Stride & Activation & Params \\
+\midrule
+input\_layer & InputLayer & None x 64 x 64 x 3 & -- & -- & -- & 0 \\
+conv2d & Conv2D & None x 64 x 64 x 32 & 3x3 & 1x1 & ReLU & 896 \\
+max\_pooling2d & MaxPooling2D & None x 32 x 32 x 32 & -- & 2x2 & -- & 0 \\
+conv2d\_1 & Conv2D & None x 32 x 32 x 64 & 3x3 & 1x1 & ReLU & 18496 \\
+max\_pooling2d\_1 & MaxPooling2D & None x 16 x 16 x 64 & -- & 2x2 & -- & 0 \\
+conv2d\_2 & Conv2D & None x 16 x 16 x 128 & 3x3 & 1x1 & ReLU & 73856 \\
+max\_pooling2d\_2 & MaxPooling2D & None x 8 x 8 x 128 & -- & 2x2 & -- & 0 \\
+global\_average\_pooling2d & GlobalAveragePooling2D & None x 128 & -- & -- & -- & 0 \\
+dense & Dense & None x 64 & -- & -- & ReLU & 8256 \\
+dense\_1 & Dense & None x 5 & -- & -- & Softmax & 325 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Complete Model B layer table from the verified architecture CSV.}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llllllr}
+\toprule
+Layer & Class & Output shape & Kernel & Stride & Activation & Params \\
+\midrule
+input\_layer\_1 & InputLayer & None x 64 x 64 x 3 & -- & -- & -- & 0 \\
+separable\_conv2d & SeparableConv2D & None x 64 x 64 x 32 & 3x3 & 1x1 & ReLU & 155 \\
+max\_pooling2d\_3 & MaxPooling2D & None x 32 x 32 x 32 & -- & 2x2 & -- & 0 \\
+separable\_conv2d\_1 & SeparableConv2D & None x 32 x 32 x 64 & 3x3 & 1x1 & ReLU & 2400 \\
+max\_pooling2d\_4 & MaxPooling2D & None x 16 x 16 x 64 & -- & 2x2 & -- & 0 \\
+separable\_conv2d\_2 & SeparableConv2D & None x 16 x 16 x 96 & 3x3 & 1x1 & ReLU & 6816 \\
+max\_pooling2d\_5 & MaxPooling2D & None x 8 x 8 x 96 & -- & 2x2 & -- & 0 \\
+global\_average\_pooling2d\_1 & GlobalAveragePooling2D & None x 96 & -- & -- & -- & 0 \\
+dense\_2 & Dense & None x 48 & -- & -- & ReLU & 4656 \\
+dense\_3 & Dense & None x 5 & -- & -- & Softmax & 245 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\section{Reproducibility and Saved Evidence}
+\begin{table}[H]
+\centering
+\caption{Mapping from report requirements to saved project evidence.}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{ll}
+\toprule
+Requirement & Saved evidence path \\
+\midrule
+Dataset and split & \path{data/processed/splits.csv}, \path{results/verification/split_verification.json} \\
+Dataset summary & \path{results/tables/dataset_summary.csv}, \path{results/metrics/dataset_summary.json} \\
+Model A architecture & \path{results/tables/model_a_architecture.csv}, \path{results/metrics/model_a_summary.txt} \\
+Model B architecture & \path{results/tables/model_b_architecture.csv}, \path{results/metrics/model_b_summary.txt} \\
+Parameter checks & \path{results/verification/model_parameter_checks.json} \\
+Optimizer comparison & \path{results/tables/optimizer_comparison.csv}, \path{results/figures/optimizer_comparison.png} \\
+Custom training histories & \path{results/raw/model_a/history.csv}, \path{results/raw/model_b/history.csv} \\
+Custom test predictions & \path{results/raw/model_a/test_predictions.csv}, \path{results/raw/model_b/test_predictions.csv} \\
+Custom confusion matrices & \path{results/raw/model_a/confusion_matrix.csv}, \path{results/raw/model_b/confusion_matrix.csv} \\
+Pretrained results & \path{results/raw/mobilenetv2/metrics.json}, \path{results/raw/efficientnetb0/metrics.json} \\
+Pretrained histories & \path{results/raw/mobilenetv2/history.csv}, \path{results/raw/efficientnetb0/history.csv} \\
+Resource comparison & \path{results/tables/final_comparison.csv} \\
+MAC evidence & \path{results/tables/custom_model_macs.csv}, \path{results/tables/pretrained_transfer_macs.csv} \\
+CPU latency evidence & \path{results/tables/custom_latency.csv}, \path{results/tables/pretrained_transfer_latency.csv} \\
+Environment and pipeline checks & \path{results/metrics/environment_info.json}, \path{results/verification/custom_pipeline_check.json} \\
+\bottomrule
+\end{tabular}}
+\end{table}
 
 \end{document}

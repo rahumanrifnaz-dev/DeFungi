@@ -1,0 +1,403 @@
+model,layer,class,output_shape,macs,note
+MobileNetV2,image,InputLayer,Nonex64x64x3,0,Not included in MAC total.
+MobileNetV2,input_layer,InputLayer,Nonex64x64x3,0,Not included in MAC total.
+MobileNetV2,Conv1,Conv2D,Nonex32x32x32,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,bn_Conv1,BatchNormalization,Nonex32x32x32,0,Not included in MAC total.
+MobileNetV2,Conv1_relu,ReLU,Nonex32x32x32,0,Not included in MAC total.
+MobileNetV2,expanded_conv_depthwise,DepthwiseConv2D,Nonex32x32x32,294912,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,expanded_conv_depthwise_BN,BatchNormalization,Nonex32x32x32,0,Not included in MAC total.
+MobileNetV2,expanded_conv_depthwise_relu,ReLU,Nonex32x32x32,0,Not included in MAC total.
+MobileNetV2,expanded_conv_project,Conv2D,Nonex32x32x16,524288,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,expanded_conv_project_BN,BatchNormalization,Nonex32x32x16,0,Not included in MAC total.
+MobileNetV2,block_1_expand,Conv2D,Nonex32x32x96,1572864,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_1_expand_BN,BatchNormalization,Nonex32x32x96,0,Not included in MAC total.
+MobileNetV2,block_1_expand_relu,ReLU,Nonex32x32x96,0,Not included in MAC total.
+MobileNetV2,block_1_pad,ZeroPadding2D,Nonex33x33x96,0,Not included in MAC total.
+MobileNetV2,block_1_depthwise,DepthwiseConv2D,Nonex16x16x96,221184,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_1_depthwise_BN,BatchNormalization,Nonex16x16x96,0,Not included in MAC total.
+MobileNetV2,block_1_depthwise_relu,ReLU,Nonex16x16x96,0,Not included in MAC total.
+MobileNetV2,block_1_project,Conv2D,Nonex16x16x24,589824,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_1_project_BN,BatchNormalization,Nonex16x16x24,0,Not included in MAC total.
+MobileNetV2,block_2_expand,Conv2D,Nonex16x16x144,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_2_expand_BN,BatchNormalization,Nonex16x16x144,0,Not included in MAC total.
+MobileNetV2,block_2_expand_relu,ReLU,Nonex16x16x144,0,Not included in MAC total.
+MobileNetV2,block_2_depthwise,DepthwiseConv2D,Nonex16x16x144,331776,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_2_depthwise_BN,BatchNormalization,Nonex16x16x144,0,Not included in MAC total.
+MobileNetV2,block_2_depthwise_relu,ReLU,Nonex16x16x144,0,Not included in MAC total.
+MobileNetV2,block_2_project,Conv2D,Nonex16x16x24,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_2_project_BN,BatchNormalization,Nonex16x16x24,0,Not included in MAC total.
+MobileNetV2,block_2_add,Add,Nonex16x16x24,0,Not included in MAC total.
+MobileNetV2,block_3_expand,Conv2D,Nonex16x16x144,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_3_expand_BN,BatchNormalization,Nonex16x16x144,0,Not included in MAC total.
+MobileNetV2,block_3_expand_relu,ReLU,Nonex16x16x144,0,Not included in MAC total.
+MobileNetV2,block_3_pad,ZeroPadding2D,Nonex17x17x144,0,Not included in MAC total.
+MobileNetV2,block_3_depthwise,DepthwiseConv2D,Nonex8x8x144,82944,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_3_depthwise_BN,BatchNormalization,Nonex8x8x144,0,Not included in MAC total.
+MobileNetV2,block_3_depthwise_relu,ReLU,Nonex8x8x144,0,Not included in MAC total.
+MobileNetV2,block_3_project,Conv2D,Nonex8x8x32,294912,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_3_project_BN,BatchNormalization,Nonex8x8x32,0,Not included in MAC total.
+MobileNetV2,block_4_expand,Conv2D,Nonex8x8x192,393216,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_4_expand_BN,BatchNormalization,Nonex8x8x192,0,Not included in MAC total.
+MobileNetV2,block_4_expand_relu,ReLU,Nonex8x8x192,0,Not included in MAC total.
+MobileNetV2,block_4_depthwise,DepthwiseConv2D,Nonex8x8x192,110592,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_4_depthwise_BN,BatchNormalization,Nonex8x8x192,0,Not included in MAC total.
+MobileNetV2,block_4_depthwise_relu,ReLU,Nonex8x8x192,0,Not included in MAC total.
+MobileNetV2,block_4_project,Conv2D,Nonex8x8x32,393216,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_4_project_BN,BatchNormalization,Nonex8x8x32,0,Not included in MAC total.
+MobileNetV2,block_4_add,Add,Nonex8x8x32,0,Not included in MAC total.
+MobileNetV2,block_5_expand,Conv2D,Nonex8x8x192,393216,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_5_expand_BN,BatchNormalization,Nonex8x8x192,0,Not included in MAC total.
+MobileNetV2,block_5_expand_relu,ReLU,Nonex8x8x192,0,Not included in MAC total.
+MobileNetV2,block_5_depthwise,DepthwiseConv2D,Nonex8x8x192,110592,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_5_depthwise_BN,BatchNormalization,Nonex8x8x192,0,Not included in MAC total.
+MobileNetV2,block_5_depthwise_relu,ReLU,Nonex8x8x192,0,Not included in MAC total.
+MobileNetV2,block_5_project,Conv2D,Nonex8x8x32,393216,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_5_project_BN,BatchNormalization,Nonex8x8x32,0,Not included in MAC total.
+MobileNetV2,block_5_add,Add,Nonex8x8x32,0,Not included in MAC total.
+MobileNetV2,block_6_expand,Conv2D,Nonex8x8x192,393216,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_6_expand_BN,BatchNormalization,Nonex8x8x192,0,Not included in MAC total.
+MobileNetV2,block_6_expand_relu,ReLU,Nonex8x8x192,0,Not included in MAC total.
+MobileNetV2,block_6_pad,ZeroPadding2D,Nonex9x9x192,0,Not included in MAC total.
+MobileNetV2,block_6_depthwise,DepthwiseConv2D,Nonex4x4x192,27648,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_6_depthwise_BN,BatchNormalization,Nonex4x4x192,0,Not included in MAC total.
+MobileNetV2,block_6_depthwise_relu,ReLU,Nonex4x4x192,0,Not included in MAC total.
+MobileNetV2,block_6_project,Conv2D,Nonex4x4x64,196608,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_6_project_BN,BatchNormalization,Nonex4x4x64,0,Not included in MAC total.
+MobileNetV2,block_7_expand,Conv2D,Nonex4x4x384,393216,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_7_expand_BN,BatchNormalization,Nonex4x4x384,0,Not included in MAC total.
+MobileNetV2,block_7_expand_relu,ReLU,Nonex4x4x384,0,Not included in MAC total.
+MobileNetV2,block_7_depthwise,DepthwiseConv2D,Nonex4x4x384,55296,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_7_depthwise_BN,BatchNormalization,Nonex4x4x384,0,Not included in MAC total.
+MobileNetV2,block_7_depthwise_relu,ReLU,Nonex4x4x384,0,Not included in MAC total.
+MobileNetV2,block_7_project,Conv2D,Nonex4x4x64,393216,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_7_project_BN,BatchNormalization,Nonex4x4x64,0,Not included in MAC total.
+MobileNetV2,block_7_add,Add,Nonex4x4x64,0,Not included in MAC total.
+MobileNetV2,block_8_expand,Conv2D,Nonex4x4x384,393216,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_8_expand_BN,BatchNormalization,Nonex4x4x384,0,Not included in MAC total.
+MobileNetV2,block_8_expand_relu,ReLU,Nonex4x4x384,0,Not included in MAC total.
+MobileNetV2,block_8_depthwise,DepthwiseConv2D,Nonex4x4x384,55296,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_8_depthwise_BN,BatchNormalization,Nonex4x4x384,0,Not included in MAC total.
+MobileNetV2,block_8_depthwise_relu,ReLU,Nonex4x4x384,0,Not included in MAC total.
+MobileNetV2,block_8_project,Conv2D,Nonex4x4x64,393216,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_8_project_BN,BatchNormalization,Nonex4x4x64,0,Not included in MAC total.
+MobileNetV2,block_8_add,Add,Nonex4x4x64,0,Not included in MAC total.
+MobileNetV2,block_9_expand,Conv2D,Nonex4x4x384,393216,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_9_expand_BN,BatchNormalization,Nonex4x4x384,0,Not included in MAC total.
+MobileNetV2,block_9_expand_relu,ReLU,Nonex4x4x384,0,Not included in MAC total.
+MobileNetV2,block_9_depthwise,DepthwiseConv2D,Nonex4x4x384,55296,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_9_depthwise_BN,BatchNormalization,Nonex4x4x384,0,Not included in MAC total.
+MobileNetV2,block_9_depthwise_relu,ReLU,Nonex4x4x384,0,Not included in MAC total.
+MobileNetV2,block_9_project,Conv2D,Nonex4x4x64,393216,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_9_project_BN,BatchNormalization,Nonex4x4x64,0,Not included in MAC total.
+MobileNetV2,block_9_add,Add,Nonex4x4x64,0,Not included in MAC total.
+MobileNetV2,block_10_expand,Conv2D,Nonex4x4x384,393216,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_10_expand_BN,BatchNormalization,Nonex4x4x384,0,Not included in MAC total.
+MobileNetV2,block_10_expand_relu,ReLU,Nonex4x4x384,0,Not included in MAC total.
+MobileNetV2,block_10_depthwise,DepthwiseConv2D,Nonex4x4x384,55296,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_10_depthwise_BN,BatchNormalization,Nonex4x4x384,0,Not included in MAC total.
+MobileNetV2,block_10_depthwise_relu,ReLU,Nonex4x4x384,0,Not included in MAC total.
+MobileNetV2,block_10_project,Conv2D,Nonex4x4x96,589824,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_10_project_BN,BatchNormalization,Nonex4x4x96,0,Not included in MAC total.
+MobileNetV2,block_11_expand,Conv2D,Nonex4x4x576,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_11_expand_BN,BatchNormalization,Nonex4x4x576,0,Not included in MAC total.
+MobileNetV2,block_11_expand_relu,ReLU,Nonex4x4x576,0,Not included in MAC total.
+MobileNetV2,block_11_depthwise,DepthwiseConv2D,Nonex4x4x576,82944,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_11_depthwise_BN,BatchNormalization,Nonex4x4x576,0,Not included in MAC total.
+MobileNetV2,block_11_depthwise_relu,ReLU,Nonex4x4x576,0,Not included in MAC total.
+MobileNetV2,block_11_project,Conv2D,Nonex4x4x96,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_11_project_BN,BatchNormalization,Nonex4x4x96,0,Not included in MAC total.
+MobileNetV2,block_11_add,Add,Nonex4x4x96,0,Not included in MAC total.
+MobileNetV2,block_12_expand,Conv2D,Nonex4x4x576,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_12_expand_BN,BatchNormalization,Nonex4x4x576,0,Not included in MAC total.
+MobileNetV2,block_12_expand_relu,ReLU,Nonex4x4x576,0,Not included in MAC total.
+MobileNetV2,block_12_depthwise,DepthwiseConv2D,Nonex4x4x576,82944,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_12_depthwise_BN,BatchNormalization,Nonex4x4x576,0,Not included in MAC total.
+MobileNetV2,block_12_depthwise_relu,ReLU,Nonex4x4x576,0,Not included in MAC total.
+MobileNetV2,block_12_project,Conv2D,Nonex4x4x96,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_12_project_BN,BatchNormalization,Nonex4x4x96,0,Not included in MAC total.
+MobileNetV2,block_12_add,Add,Nonex4x4x96,0,Not included in MAC total.
+MobileNetV2,block_13_expand,Conv2D,Nonex4x4x576,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_13_expand_BN,BatchNormalization,Nonex4x4x576,0,Not included in MAC total.
+MobileNetV2,block_13_expand_relu,ReLU,Nonex4x4x576,0,Not included in MAC total.
+MobileNetV2,block_13_pad,ZeroPadding2D,Nonex5x5x576,0,Not included in MAC total.
+MobileNetV2,block_13_depthwise,DepthwiseConv2D,Nonex2x2x576,20736,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_13_depthwise_BN,BatchNormalization,Nonex2x2x576,0,Not included in MAC total.
+MobileNetV2,block_13_depthwise_relu,ReLU,Nonex2x2x576,0,Not included in MAC total.
+MobileNetV2,block_13_project,Conv2D,Nonex2x2x160,368640,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_13_project_BN,BatchNormalization,Nonex2x2x160,0,Not included in MAC total.
+MobileNetV2,block_14_expand,Conv2D,Nonex2x2x960,614400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_14_expand_BN,BatchNormalization,Nonex2x2x960,0,Not included in MAC total.
+MobileNetV2,block_14_expand_relu,ReLU,Nonex2x2x960,0,Not included in MAC total.
+MobileNetV2,block_14_depthwise,DepthwiseConv2D,Nonex2x2x960,34560,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_14_depthwise_BN,BatchNormalization,Nonex2x2x960,0,Not included in MAC total.
+MobileNetV2,block_14_depthwise_relu,ReLU,Nonex2x2x960,0,Not included in MAC total.
+MobileNetV2,block_14_project,Conv2D,Nonex2x2x160,614400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_14_project_BN,BatchNormalization,Nonex2x2x160,0,Not included in MAC total.
+MobileNetV2,block_14_add,Add,Nonex2x2x160,0,Not included in MAC total.
+MobileNetV2,block_15_expand,Conv2D,Nonex2x2x960,614400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_15_expand_BN,BatchNormalization,Nonex2x2x960,0,Not included in MAC total.
+MobileNetV2,block_15_expand_relu,ReLU,Nonex2x2x960,0,Not included in MAC total.
+MobileNetV2,block_15_depthwise,DepthwiseConv2D,Nonex2x2x960,34560,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_15_depthwise_BN,BatchNormalization,Nonex2x2x960,0,Not included in MAC total.
+MobileNetV2,block_15_depthwise_relu,ReLU,Nonex2x2x960,0,Not included in MAC total.
+MobileNetV2,block_15_project,Conv2D,Nonex2x2x160,614400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_15_project_BN,BatchNormalization,Nonex2x2x160,0,Not included in MAC total.
+MobileNetV2,block_15_add,Add,Nonex2x2x160,0,Not included in MAC total.
+MobileNetV2,block_16_expand,Conv2D,Nonex2x2x960,614400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_16_expand_BN,BatchNormalization,Nonex2x2x960,0,Not included in MAC total.
+MobileNetV2,block_16_expand_relu,ReLU,Nonex2x2x960,0,Not included in MAC total.
+MobileNetV2,block_16_depthwise,DepthwiseConv2D,Nonex2x2x960,34560,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_16_depthwise_BN,BatchNormalization,Nonex2x2x960,0,Not included in MAC total.
+MobileNetV2,block_16_depthwise_relu,ReLU,Nonex2x2x960,0,Not included in MAC total.
+MobileNetV2,block_16_project,Conv2D,Nonex2x2x320,1228800,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,block_16_project_BN,BatchNormalization,Nonex2x2x320,0,Not included in MAC total.
+MobileNetV2,Conv_1,Conv2D,Nonex2x2x1280,1638400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+MobileNetV2,Conv_1_bn,BatchNormalization,Nonex2x2x1280,0,Not included in MAC total.
+MobileNetV2,out_relu,ReLU,Nonex2x2x1280,0,Not included in MAC total.
+MobileNetV2,gap,GlobalAveragePooling2D,Nonex1280,0,Not included in MAC total.
+MobileNetV2,head_dropout,Dropout,Nonex1280,0,Not included in MAC total.
+MobileNetV2,defungi_head,Dense,Nonex5,6400,Dense MACs exclude bias and activation cost.
+MobileNetV2,TOTAL_INCLUDED,,,24454912,Conv/DepthwiseConv/Dense MAC estimate only.
+EfficientNet-B0,image,InputLayer,Nonex64x64x3,0,Not included in MAC total.
+EfficientNet-B0,input_layer_1,InputLayer,Nonex64x64x3,0,Not included in MAC total.
+EfficientNet-B0,rescaling,Rescaling,Nonex64x64x3,0,Not included in MAC total.
+EfficientNet-B0,normalization,Normalization,Nonex64x64x3,0,Not included in MAC total.
+EfficientNet-B0,rescaling_1,Rescaling,Nonex64x64x3,0,Not included in MAC total.
+EfficientNet-B0,stem_conv_pad,ZeroPadding2D,Nonex65x65x3,0,Not included in MAC total.
+EfficientNet-B0,stem_conv,Conv2D,Nonex32x32x32,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,stem_bn,BatchNormalization,Nonex32x32x32,0,Not included in MAC total.
+EfficientNet-B0,stem_activation,Activation,Nonex32x32x32,0,Not included in MAC total.
+EfficientNet-B0,block1a_dwconv,DepthwiseConv2D,Nonex32x32x32,294912,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block1a_bn,BatchNormalization,Nonex32x32x32,0,Not included in MAC total.
+EfficientNet-B0,block1a_activation,Activation,Nonex32x32x32,0,Not included in MAC total.
+EfficientNet-B0,block1a_se_squeeze,GlobalAveragePooling2D,Nonex32,0,Not included in MAC total.
+EfficientNet-B0,block1a_se_reshape,Reshape,Nonex1x1x32,0,Not included in MAC total.
+EfficientNet-B0,block1a_se_reduce,Conv2D,Nonex1x1x8,256,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block1a_se_expand,Conv2D,Nonex1x1x32,256,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block1a_se_excite,Multiply,Nonex32x32x32,0,Not included in MAC total.
+EfficientNet-B0,block1a_project_conv,Conv2D,Nonex32x32x16,524288,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block1a_project_bn,BatchNormalization,Nonex32x32x16,0,Not included in MAC total.
+EfficientNet-B0,block2a_expand_conv,Conv2D,Nonex32x32x96,1572864,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block2a_expand_bn,BatchNormalization,Nonex32x32x96,0,Not included in MAC total.
+EfficientNet-B0,block2a_expand_activation,Activation,Nonex32x32x96,0,Not included in MAC total.
+EfficientNet-B0,block2a_dwconv_pad,ZeroPadding2D,Nonex33x33x96,0,Not included in MAC total.
+EfficientNet-B0,block2a_dwconv,DepthwiseConv2D,Nonex16x16x96,221184,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block2a_bn,BatchNormalization,Nonex16x16x96,0,Not included in MAC total.
+EfficientNet-B0,block2a_activation,Activation,Nonex16x16x96,0,Not included in MAC total.
+EfficientNet-B0,block2a_se_squeeze,GlobalAveragePooling2D,Nonex96,0,Not included in MAC total.
+EfficientNet-B0,block2a_se_reshape,Reshape,Nonex1x1x96,0,Not included in MAC total.
+EfficientNet-B0,block2a_se_reduce,Conv2D,Nonex1x1x4,384,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block2a_se_expand,Conv2D,Nonex1x1x96,384,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block2a_se_excite,Multiply,Nonex16x16x96,0,Not included in MAC total.
+EfficientNet-B0,block2a_project_conv,Conv2D,Nonex16x16x24,589824,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block2a_project_bn,BatchNormalization,Nonex16x16x24,0,Not included in MAC total.
+EfficientNet-B0,block2b_expand_conv,Conv2D,Nonex16x16x144,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block2b_expand_bn,BatchNormalization,Nonex16x16x144,0,Not included in MAC total.
+EfficientNet-B0,block2b_expand_activation,Activation,Nonex16x16x144,0,Not included in MAC total.
+EfficientNet-B0,block2b_dwconv,DepthwiseConv2D,Nonex16x16x144,331776,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block2b_bn,BatchNormalization,Nonex16x16x144,0,Not included in MAC total.
+EfficientNet-B0,block2b_activation,Activation,Nonex16x16x144,0,Not included in MAC total.
+EfficientNet-B0,block2b_se_squeeze,GlobalAveragePooling2D,Nonex144,0,Not included in MAC total.
+EfficientNet-B0,block2b_se_reshape,Reshape,Nonex1x1x144,0,Not included in MAC total.
+EfficientNet-B0,block2b_se_reduce,Conv2D,Nonex1x1x6,864,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block2b_se_expand,Conv2D,Nonex1x1x144,864,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block2b_se_excite,Multiply,Nonex16x16x144,0,Not included in MAC total.
+EfficientNet-B0,block2b_project_conv,Conv2D,Nonex16x16x24,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block2b_project_bn,BatchNormalization,Nonex16x16x24,0,Not included in MAC total.
+EfficientNet-B0,block2b_drop,Dropout,Nonex16x16x24,0,Not included in MAC total.
+EfficientNet-B0,block2b_add,Add,Nonex16x16x24,0,Not included in MAC total.
+EfficientNet-B0,block3a_expand_conv,Conv2D,Nonex16x16x144,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block3a_expand_bn,BatchNormalization,Nonex16x16x144,0,Not included in MAC total.
+EfficientNet-B0,block3a_expand_activation,Activation,Nonex16x16x144,0,Not included in MAC total.
+EfficientNet-B0,block3a_dwconv_pad,ZeroPadding2D,Nonex19x19x144,0,Not included in MAC total.
+EfficientNet-B0,block3a_dwconv,DepthwiseConv2D,Nonex8x8x144,230400,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block3a_bn,BatchNormalization,Nonex8x8x144,0,Not included in MAC total.
+EfficientNet-B0,block3a_activation,Activation,Nonex8x8x144,0,Not included in MAC total.
+EfficientNet-B0,block3a_se_squeeze,GlobalAveragePooling2D,Nonex144,0,Not included in MAC total.
+EfficientNet-B0,block3a_se_reshape,Reshape,Nonex1x1x144,0,Not included in MAC total.
+EfficientNet-B0,block3a_se_reduce,Conv2D,Nonex1x1x6,864,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block3a_se_expand,Conv2D,Nonex1x1x144,864,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block3a_se_excite,Multiply,Nonex8x8x144,0,Not included in MAC total.
+EfficientNet-B0,block3a_project_conv,Conv2D,Nonex8x8x40,368640,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block3a_project_bn,BatchNormalization,Nonex8x8x40,0,Not included in MAC total.
+EfficientNet-B0,block3b_expand_conv,Conv2D,Nonex8x8x240,614400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block3b_expand_bn,BatchNormalization,Nonex8x8x240,0,Not included in MAC total.
+EfficientNet-B0,block3b_expand_activation,Activation,Nonex8x8x240,0,Not included in MAC total.
+EfficientNet-B0,block3b_dwconv,DepthwiseConv2D,Nonex8x8x240,384000,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block3b_bn,BatchNormalization,Nonex8x8x240,0,Not included in MAC total.
+EfficientNet-B0,block3b_activation,Activation,Nonex8x8x240,0,Not included in MAC total.
+EfficientNet-B0,block3b_se_squeeze,GlobalAveragePooling2D,Nonex240,0,Not included in MAC total.
+EfficientNet-B0,block3b_se_reshape,Reshape,Nonex1x1x240,0,Not included in MAC total.
+EfficientNet-B0,block3b_se_reduce,Conv2D,Nonex1x1x10,2400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block3b_se_expand,Conv2D,Nonex1x1x240,2400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block3b_se_excite,Multiply,Nonex8x8x240,0,Not included in MAC total.
+EfficientNet-B0,block3b_project_conv,Conv2D,Nonex8x8x40,614400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block3b_project_bn,BatchNormalization,Nonex8x8x40,0,Not included in MAC total.
+EfficientNet-B0,block3b_drop,Dropout,Nonex8x8x40,0,Not included in MAC total.
+EfficientNet-B0,block3b_add,Add,Nonex8x8x40,0,Not included in MAC total.
+EfficientNet-B0,block4a_expand_conv,Conv2D,Nonex8x8x240,614400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block4a_expand_bn,BatchNormalization,Nonex8x8x240,0,Not included in MAC total.
+EfficientNet-B0,block4a_expand_activation,Activation,Nonex8x8x240,0,Not included in MAC total.
+EfficientNet-B0,block4a_dwconv_pad,ZeroPadding2D,Nonex9x9x240,0,Not included in MAC total.
+EfficientNet-B0,block4a_dwconv,DepthwiseConv2D,Nonex4x4x240,34560,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block4a_bn,BatchNormalization,Nonex4x4x240,0,Not included in MAC total.
+EfficientNet-B0,block4a_activation,Activation,Nonex4x4x240,0,Not included in MAC total.
+EfficientNet-B0,block4a_se_squeeze,GlobalAveragePooling2D,Nonex240,0,Not included in MAC total.
+EfficientNet-B0,block4a_se_reshape,Reshape,Nonex1x1x240,0,Not included in MAC total.
+EfficientNet-B0,block4a_se_reduce,Conv2D,Nonex1x1x10,2400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block4a_se_expand,Conv2D,Nonex1x1x240,2400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block4a_se_excite,Multiply,Nonex4x4x240,0,Not included in MAC total.
+EfficientNet-B0,block4a_project_conv,Conv2D,Nonex4x4x80,307200,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block4a_project_bn,BatchNormalization,Nonex4x4x80,0,Not included in MAC total.
+EfficientNet-B0,block4b_expand_conv,Conv2D,Nonex4x4x480,614400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block4b_expand_bn,BatchNormalization,Nonex4x4x480,0,Not included in MAC total.
+EfficientNet-B0,block4b_expand_activation,Activation,Nonex4x4x480,0,Not included in MAC total.
+EfficientNet-B0,block4b_dwconv,DepthwiseConv2D,Nonex4x4x480,69120,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block4b_bn,BatchNormalization,Nonex4x4x480,0,Not included in MAC total.
+EfficientNet-B0,block4b_activation,Activation,Nonex4x4x480,0,Not included in MAC total.
+EfficientNet-B0,block4b_se_squeeze,GlobalAveragePooling2D,Nonex480,0,Not included in MAC total.
+EfficientNet-B0,block4b_se_reshape,Reshape,Nonex1x1x480,0,Not included in MAC total.
+EfficientNet-B0,block4b_se_reduce,Conv2D,Nonex1x1x20,9600,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block4b_se_expand,Conv2D,Nonex1x1x480,9600,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block4b_se_excite,Multiply,Nonex4x4x480,0,Not included in MAC total.
+EfficientNet-B0,block4b_project_conv,Conv2D,Nonex4x4x80,614400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block4b_project_bn,BatchNormalization,Nonex4x4x80,0,Not included in MAC total.
+EfficientNet-B0,block4b_drop,Dropout,Nonex4x4x80,0,Not included in MAC total.
+EfficientNet-B0,block4b_add,Add,Nonex4x4x80,0,Not included in MAC total.
+EfficientNet-B0,block4c_expand_conv,Conv2D,Nonex4x4x480,614400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block4c_expand_bn,BatchNormalization,Nonex4x4x480,0,Not included in MAC total.
+EfficientNet-B0,block4c_expand_activation,Activation,Nonex4x4x480,0,Not included in MAC total.
+EfficientNet-B0,block4c_dwconv,DepthwiseConv2D,Nonex4x4x480,69120,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block4c_bn,BatchNormalization,Nonex4x4x480,0,Not included in MAC total.
+EfficientNet-B0,block4c_activation,Activation,Nonex4x4x480,0,Not included in MAC total.
+EfficientNet-B0,block4c_se_squeeze,GlobalAveragePooling2D,Nonex480,0,Not included in MAC total.
+EfficientNet-B0,block4c_se_reshape,Reshape,Nonex1x1x480,0,Not included in MAC total.
+EfficientNet-B0,block4c_se_reduce,Conv2D,Nonex1x1x20,9600,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block4c_se_expand,Conv2D,Nonex1x1x480,9600,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block4c_se_excite,Multiply,Nonex4x4x480,0,Not included in MAC total.
+EfficientNet-B0,block4c_project_conv,Conv2D,Nonex4x4x80,614400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block4c_project_bn,BatchNormalization,Nonex4x4x80,0,Not included in MAC total.
+EfficientNet-B0,block4c_drop,Dropout,Nonex4x4x80,0,Not included in MAC total.
+EfficientNet-B0,block4c_add,Add,Nonex4x4x80,0,Not included in MAC total.
+EfficientNet-B0,block5a_expand_conv,Conv2D,Nonex4x4x480,614400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block5a_expand_bn,BatchNormalization,Nonex4x4x480,0,Not included in MAC total.
+EfficientNet-B0,block5a_expand_activation,Activation,Nonex4x4x480,0,Not included in MAC total.
+EfficientNet-B0,block5a_dwconv,DepthwiseConv2D,Nonex4x4x480,192000,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block5a_bn,BatchNormalization,Nonex4x4x480,0,Not included in MAC total.
+EfficientNet-B0,block5a_activation,Activation,Nonex4x4x480,0,Not included in MAC total.
+EfficientNet-B0,block5a_se_squeeze,GlobalAveragePooling2D,Nonex480,0,Not included in MAC total.
+EfficientNet-B0,block5a_se_reshape,Reshape,Nonex1x1x480,0,Not included in MAC total.
+EfficientNet-B0,block5a_se_reduce,Conv2D,Nonex1x1x20,9600,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block5a_se_expand,Conv2D,Nonex1x1x480,9600,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block5a_se_excite,Multiply,Nonex4x4x480,0,Not included in MAC total.
+EfficientNet-B0,block5a_project_conv,Conv2D,Nonex4x4x112,860160,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block5a_project_bn,BatchNormalization,Nonex4x4x112,0,Not included in MAC total.
+EfficientNet-B0,block5b_expand_conv,Conv2D,Nonex4x4x672,1204224,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block5b_expand_bn,BatchNormalization,Nonex4x4x672,0,Not included in MAC total.
+EfficientNet-B0,block5b_expand_activation,Activation,Nonex4x4x672,0,Not included in MAC total.
+EfficientNet-B0,block5b_dwconv,DepthwiseConv2D,Nonex4x4x672,268800,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block5b_bn,BatchNormalization,Nonex4x4x672,0,Not included in MAC total.
+EfficientNet-B0,block5b_activation,Activation,Nonex4x4x672,0,Not included in MAC total.
+EfficientNet-B0,block5b_se_squeeze,GlobalAveragePooling2D,Nonex672,0,Not included in MAC total.
+EfficientNet-B0,block5b_se_reshape,Reshape,Nonex1x1x672,0,Not included in MAC total.
+EfficientNet-B0,block5b_se_reduce,Conv2D,Nonex1x1x28,18816,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block5b_se_expand,Conv2D,Nonex1x1x672,18816,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block5b_se_excite,Multiply,Nonex4x4x672,0,Not included in MAC total.
+EfficientNet-B0,block5b_project_conv,Conv2D,Nonex4x4x112,1204224,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block5b_project_bn,BatchNormalization,Nonex4x4x112,0,Not included in MAC total.
+EfficientNet-B0,block5b_drop,Dropout,Nonex4x4x112,0,Not included in MAC total.
+EfficientNet-B0,block5b_add,Add,Nonex4x4x112,0,Not included in MAC total.
+EfficientNet-B0,block5c_expand_conv,Conv2D,Nonex4x4x672,1204224,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block5c_expand_bn,BatchNormalization,Nonex4x4x672,0,Not included in MAC total.
+EfficientNet-B0,block5c_expand_activation,Activation,Nonex4x4x672,0,Not included in MAC total.
+EfficientNet-B0,block5c_dwconv,DepthwiseConv2D,Nonex4x4x672,268800,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block5c_bn,BatchNormalization,Nonex4x4x672,0,Not included in MAC total.
+EfficientNet-B0,block5c_activation,Activation,Nonex4x4x672,0,Not included in MAC total.
+EfficientNet-B0,block5c_se_squeeze,GlobalAveragePooling2D,Nonex672,0,Not included in MAC total.
+EfficientNet-B0,block5c_se_reshape,Reshape,Nonex1x1x672,0,Not included in MAC total.
+EfficientNet-B0,block5c_se_reduce,Conv2D,Nonex1x1x28,18816,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block5c_se_expand,Conv2D,Nonex1x1x672,18816,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block5c_se_excite,Multiply,Nonex4x4x672,0,Not included in MAC total.
+EfficientNet-B0,block5c_project_conv,Conv2D,Nonex4x4x112,1204224,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block5c_project_bn,BatchNormalization,Nonex4x4x112,0,Not included in MAC total.
+EfficientNet-B0,block5c_drop,Dropout,Nonex4x4x112,0,Not included in MAC total.
+EfficientNet-B0,block5c_add,Add,Nonex4x4x112,0,Not included in MAC total.
+EfficientNet-B0,block6a_expand_conv,Conv2D,Nonex4x4x672,1204224,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6a_expand_bn,BatchNormalization,Nonex4x4x672,0,Not included in MAC total.
+EfficientNet-B0,block6a_expand_activation,Activation,Nonex4x4x672,0,Not included in MAC total.
+EfficientNet-B0,block6a_dwconv_pad,ZeroPadding2D,Nonex7x7x672,0,Not included in MAC total.
+EfficientNet-B0,block6a_dwconv,DepthwiseConv2D,Nonex2x2x672,67200,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6a_bn,BatchNormalization,Nonex2x2x672,0,Not included in MAC total.
+EfficientNet-B0,block6a_activation,Activation,Nonex2x2x672,0,Not included in MAC total.
+EfficientNet-B0,block6a_se_squeeze,GlobalAveragePooling2D,Nonex672,0,Not included in MAC total.
+EfficientNet-B0,block6a_se_reshape,Reshape,Nonex1x1x672,0,Not included in MAC total.
+EfficientNet-B0,block6a_se_reduce,Conv2D,Nonex1x1x28,18816,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6a_se_expand,Conv2D,Nonex1x1x672,18816,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6a_se_excite,Multiply,Nonex2x2x672,0,Not included in MAC total.
+EfficientNet-B0,block6a_project_conv,Conv2D,Nonex2x2x192,516096,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6a_project_bn,BatchNormalization,Nonex2x2x192,0,Not included in MAC total.
+EfficientNet-B0,block6b_expand_conv,Conv2D,Nonex2x2x1152,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6b_expand_bn,BatchNormalization,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block6b_expand_activation,Activation,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block6b_dwconv,DepthwiseConv2D,Nonex2x2x1152,115200,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6b_bn,BatchNormalization,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block6b_activation,Activation,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block6b_se_squeeze,GlobalAveragePooling2D,Nonex1152,0,Not included in MAC total.
+EfficientNet-B0,block6b_se_reshape,Reshape,Nonex1x1x1152,0,Not included in MAC total.
+EfficientNet-B0,block6b_se_reduce,Conv2D,Nonex1x1x48,55296,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6b_se_expand,Conv2D,Nonex1x1x1152,55296,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6b_se_excite,Multiply,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block6b_project_conv,Conv2D,Nonex2x2x192,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6b_project_bn,BatchNormalization,Nonex2x2x192,0,Not included in MAC total.
+EfficientNet-B0,block6b_drop,Dropout,Nonex2x2x192,0,Not included in MAC total.
+EfficientNet-B0,block6b_add,Add,Nonex2x2x192,0,Not included in MAC total.
+EfficientNet-B0,block6c_expand_conv,Conv2D,Nonex2x2x1152,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6c_expand_bn,BatchNormalization,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block6c_expand_activation,Activation,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block6c_dwconv,DepthwiseConv2D,Nonex2x2x1152,115200,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6c_bn,BatchNormalization,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block6c_activation,Activation,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block6c_se_squeeze,GlobalAveragePooling2D,Nonex1152,0,Not included in MAC total.
+EfficientNet-B0,block6c_se_reshape,Reshape,Nonex1x1x1152,0,Not included in MAC total.
+EfficientNet-B0,block6c_se_reduce,Conv2D,Nonex1x1x48,55296,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6c_se_expand,Conv2D,Nonex1x1x1152,55296,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6c_se_excite,Multiply,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block6c_project_conv,Conv2D,Nonex2x2x192,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6c_project_bn,BatchNormalization,Nonex2x2x192,0,Not included in MAC total.
+EfficientNet-B0,block6c_drop,Dropout,Nonex2x2x192,0,Not included in MAC total.
+EfficientNet-B0,block6c_add,Add,Nonex2x2x192,0,Not included in MAC total.
+EfficientNet-B0,block6d_expand_conv,Conv2D,Nonex2x2x1152,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6d_expand_bn,BatchNormalization,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block6d_expand_activation,Activation,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block6d_dwconv,DepthwiseConv2D,Nonex2x2x1152,115200,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6d_bn,BatchNormalization,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block6d_activation,Activation,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block6d_se_squeeze,GlobalAveragePooling2D,Nonex1152,0,Not included in MAC total.
+EfficientNet-B0,block6d_se_reshape,Reshape,Nonex1x1x1152,0,Not included in MAC total.
+EfficientNet-B0,block6d_se_reduce,Conv2D,Nonex1x1x48,55296,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6d_se_expand,Conv2D,Nonex1x1x1152,55296,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6d_se_excite,Multiply,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block6d_project_conv,Conv2D,Nonex2x2x192,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block6d_project_bn,BatchNormalization,Nonex2x2x192,0,Not included in MAC total.
+EfficientNet-B0,block6d_drop,Dropout,Nonex2x2x192,0,Not included in MAC total.
+EfficientNet-B0,block6d_add,Add,Nonex2x2x192,0,Not included in MAC total.
+EfficientNet-B0,block7a_expand_conv,Conv2D,Nonex2x2x1152,884736,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block7a_expand_bn,BatchNormalization,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block7a_expand_activation,Activation,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block7a_dwconv,DepthwiseConv2D,Nonex2x2x1152,41472,"DepthwiseConv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block7a_bn,BatchNormalization,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block7a_activation,Activation,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block7a_se_squeeze,GlobalAveragePooling2D,Nonex1152,0,Not included in MAC total.
+EfficientNet-B0,block7a_se_reshape,Reshape,Nonex1x1x1152,0,Not included in MAC total.
+EfficientNet-B0,block7a_se_reduce,Conv2D,Nonex1x1x48,55296,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block7a_se_expand,Conv2D,Nonex1x1x1152,55296,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block7a_se_excite,Multiply,Nonex2x2x1152,0,Not included in MAC total.
+EfficientNet-B0,block7a_project_conv,Conv2D,Nonex2x2x320,1474560,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,block7a_project_bn,BatchNormalization,Nonex2x2x320,0,Not included in MAC total.
+EfficientNet-B0,top_conv,Conv2D,Nonex2x2x1280,1638400,"Conv2D MACs exclude bias, activation, normalization, and pooling cost."
+EfficientNet-B0,top_bn,BatchNormalization,Nonex2x2x1280,0,Not included in MAC total.
+EfficientNet-B0,top_activation,Activation,Nonex2x2x1280,0,Not included in MAC total.
+EfficientNet-B0,gap,GlobalAveragePooling2D,Nonex1280,0,Not included in MAC total.
+EfficientNet-B0,head_dropout,Dropout,Nonex1280,0,Not included in MAC total.
+EfficientNet-B0,defungi_head,Dense,Nonex5,6400,Dense MACs exclude bias and activation cost.
+EfficientNet-B0,TOTAL_INCLUDED,,,31972992,Conv/DepthwiseConv/Dense MAC estimate only.

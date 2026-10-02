@@ -46,4 +46,4 @@ Test & 661 & 350 & 123 & 123 & 111 & 1,368 \\
 \end{tabular}
 \end{table}
 
-For the custom CNNs, all images were resized to $64 \times 64 \times 3$ and pixel values were normalized to the range $[0,1]$. For the pretrained models, images were resized to $224 \times 224 \times 3$ and processed with the corresponding Keras application preprocessing functions.
+For the custom CNNs, all images were resized to $64 \times 64 \times 3$ and pixel values were normalized to the range $[0,1]$. The final Session 3 pretrained models also used 64$\times$64 inputs because the requested ImageNet backbones loaded correctly at this resolution, allowing the project to keep the assignment's image-size constraint while preserving the same split membership.

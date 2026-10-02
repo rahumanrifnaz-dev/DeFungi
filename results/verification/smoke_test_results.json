@@ -1,0 +1,48 @@
+[
+  {
+    "model": "model_a",
+    "optimizer": "adam",
+    "train_batches": 3,
+    "validation_batches": 1,
+    "epochs": 1,
+    "history": {
+      "accuracy": [
+        0.2395833283662796
+      ],
+      "loss": [
+        1.603036880493164
+      ],
+      "val_accuracy": [
+        1.0
+      ],
+      "val_loss": [
+        1.5268726348876953
+      ]
+    },
+    "passed": true,
+    "note": "Smoke-test metrics are for pipeline verification only and are not final experimental results."
+  },
+  {
+    "model": "model_b",
+    "optimizer": "adam",
+    "train_batches": 3,
+    "validation_batches": 1,
+    "epochs": 1,
+    "history": {
+      "accuracy": [
+        0.3541666567325592
+      ],
+      "loss": [
+        1.607809066772461
+      ],
+      "val_accuracy": [
+        1.0
+      ],
+      "val_loss": [
+        1.5917178392410278
+      ]
+    },
+    "passed": true,
+    "note": "Smoke-test metrics are for pipeline verification only and are not final experimental results."
+  }
+]
