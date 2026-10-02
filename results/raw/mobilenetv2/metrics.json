@@ -1,0 +1,86 @@
+{
+  "model": "mobilenetv2",
+  "display_name": "MobileNetV2",
+  "input_size": [
+    64,
+    64
+  ],
+  "preprocessing": "tf.keras.applications.mobilenet_v2.preprocess_input",
+  "pretrained_weights": "ImageNet",
+  "transfer_learning_strategy": "Stage 1 froze the ImageNet feature extractor and trained the DeFungi head for 3 epochs at LR 0.001. Stage 2 fine-tuned the upper 20 non-BatchNorm backbone layers plus the head for 8 epochs at LR 0.0001. Validation loss selected the saved checkpoint.",
+  "head_epochs": 3,
+  "fine_tune_epochs": 8,
+  "total_epochs": 11,
+  "batch_size": 32,
+  "head_learning_rate": 0.001,
+  "fine_tune_learning_rate": 0.0001,
+  "total_parameters": 2264389,
+  "trainable_parameters": 1609285,
+  "serialized_model_size_mb": 21.4845,
+  "serialized_model_size_kib": 22000.13,
+  "epoch_times_seconds": [
+    19.0191,
+    14.4426,
+    14.6146,
+    37.5464,
+    31.8849,
+    26.4196,
+    28.4793,
+    33.9754,
+    31.575,
+    32.0913,
+    32.5733
+  ],
+  "mean_epoch_time_seconds": 27.5111,
+  "test_accuracy": 0.6907894736842105,
+  "macro_precision": 0.723171326344764,
+  "macro_recall": 0.6478240370391951,
+  "macro_f1": 0.6671667868906008,
+  "precision_recall_averaging": "macro",
+  "class_names": [
+    "H1",
+    "H2",
+    "H3",
+    "H5",
+    "H6"
+  ],
+  "confusion_matrix": [
+    [
+      609,
+      36,
+      12,
+      2,
+      2
+    ],
+    [
+      227,
+      90,
+      24,
+      2,
+      7
+    ],
+    [
+      14,
+      16,
+      87,
+      5,
+      1
+    ],
+    [
+      17,
+      9,
+      6,
+      90,
+      1
+    ],
+    [
+      18,
+      17,
+      2,
+      5,
+      69
+    ]
+  ],
+  "best_validation_loss": 0.7426739931106567,
+  "best_validation_epoch": 11
+}

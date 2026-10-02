@@ -1,0 +1,23 @@
+\section{Final Model Comparison}
+\textbf{Owner: Lavanathan.J -- 230371R}
+
+The final comparison uses the verified `results/tables/final_comparison.csv` evidence. It compares both custom CNNs with the two Session 3 transfer-learning models. Serialized size is reported in KiB, and CPU latency is measured as batch-1 forward-pass latency on the local CPU using in-memory tensors.
+
+\begin{table}[H]
+\centering
+\caption{Final verified comparison across all evaluated models.}
+\label{tab:final_comparison}
+\small
+\begin{tabularx}{\linewidth}{lrrrr}
+\toprule
+Model & Accuracy & Parameters & Size (KiB) & CPU mean (ms) \\
+\midrule
+Model A & 0.6959 & 101,829 & 1,241.37 & 2.8241 \\
+Model B & 0.6484 & 14,272 & 219.41 & 1.5922 \\
+MobileNetV2 & 0.6908 & 2,264,389 & 22,000.13 & 170.1065 \\
+EfficientNet-B0 & 0.7668 & 4,055,976 & 32,650.04 & 322.2855 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+EfficientNet-B0 achieved the highest measured accuracy and macro recall, but it also had the largest serialized footprint and highest measured CPU latency. Model B had the smallest parameter count, smallest serialized artifact, lowest included MAC estimate, and lowest measured CPU latency. MobileNetV2 had fewer included MACs than Model A but much higher measured CPU latency on this machine, showing that parameter count and MACs alone do not establish edge performance.
