@@ -1,0 +1,21 @@
+\section{Conclusion}
+
+This project completed a resource-constrained image classification pipeline on the verified DeFungi dataset. The custom baseline Model A achieved 0.6959 test accuracy with 101,829 parameters, while the compact Model B reduced the parameter count to 14,272 and FP32 parameter storage to 55.75 KB, at a lower test accuracy of 0.6484. The optimizer comparison selected Adam with learning rate 0.001 based on the lowest final validation loss in the controlled optimizer experiment.
+
+The pretrained models were evaluated on the same split membership using the final Session 3 transfer-learning setup. MobileNetV2 reached 0.6908 test accuracy, and EfficientNet-B0 reached the best overall test accuracy of 0.7668. However, both pretrained models require substantially larger serialized model storage and higher measured CPU latency than Model B. The final results show the expected trade-off between compact custom models for edge deployment and pretrained models for stronger accuracy.
+
+\begin{table}[H]
+\centering
+\caption{Member contributions.}
+\label{tab:member_contributions}
+\begin{tabularx}{\linewidth}{lll}
+\toprule
+Member & Registration Number & Contribution \\
+\midrule
+Rifnaz.K.R.M & 230550P & Dataset Preparation + Model A \\
+Panuharan.S & 230462X & Model B + Efficiency Analysis \\
+Peranavan.K & 230474K & Optimizer Comparison + Training/Evaluation \\
+Lavanathan.J & 230371R & Pretrained Lightweight Models + Final Comparison \\
+\bottomrule
+\end{tabularx}
+\end{table}

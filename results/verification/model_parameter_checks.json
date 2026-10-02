@@ -1,0 +1,35 @@
+{
+  "model_a": {
+    "trainable_parameters": 101829,
+    "expected_trainable_parameters": 101829,
+    "fp32_parameter_storage_kb": 397.77,
+    "notes": [
+      "ReLU is hardware-friendly because it mainly uses a simple max(0, x) operation.",
+      "Global Average Pooling reduces parameters compared with Flatten followed by large Dense layers."
+    ]
+  },
+  "model_b": {
+    "trainable_parameters": 14272,
+    "parameter_limit": 100000,
+    "fp32_parameter_storage_kb": 55.75,
+    "standard_conv_formula": "(kernel_h * kernel_w * input_channels + bias) * output_channels",
+    "separable_conv_formula": "Keras SeparableConv2D with use_bias=True: depthwise kernel_h * kernel_w * input_channels; pointwise input_channels * output_channels; bias output_channels",
+    "sepconv_examples": {
+      "3_to_32": {
+        "depthwise": 27,
+        "pointwise": 128,
+        "total": 155
+      },
+      "32_to_64": {
+        "depthwise": 288,
+        "pointwise": 2112,
+        "total": 2400
+      },
+      "64_to_96": {
+        "depthwise": 576,
+        "pointwise": 6240,
+        "total": 6816
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "model": "efficientnetb0",
+  "display_name": "EfficientNet-B0",
+  "input_size": [
+    64,
+    64
+  ],
+  "preprocessing": "tf.keras.applications.efficientnetb0.preprocess_input",
+  "pretrained_weights": "ImageNet",
+  "transfer_learning_strategy": "Stage 1 froze the ImageNet feature extractor and trained the DeFungi head for 3 epochs at LR 0.001. Stage 2 fine-tuned the upper 30 non-BatchNorm backbone layers plus the head for 8 epochs at LR 0.0001. Validation loss selected the saved checkpoint.",
+  "head_epochs": 3,
+  "fine_tune_epochs": 8,
+  "total_epochs": 11,
+  "batch_size": 32,
+  "head_learning_rate": 0.001,
+  "fine_tune_learning_rate": 0.0001,
+  "total_parameters": 4055976,
+  "trainable_parameters": 2043925,
+  "serialized_model_size_mb": 31.8848,
+  "serialized_model_size_kib": 32650.04,
+  "epoch_times_seconds": [
+    33.2417,
+    25.3323,
+    22.8839,
+    51.9729,
+    39.5807,
+    40.126,
+    40.0957,
+    39.8233,
+    41.8224,
+    37.4389,
+    36.5821
+  ],
+  "mean_epoch_time_seconds": 37.1727,
+  "test_accuracy": 0.7668128654970761,
+  "macro_precision": 0.809860625155838,
+  "macro_recall": 0.7855623497534866,
+  "macro_f1": 0.7895498674861267,
+  "precision_recall_averaging": "macro",
+  "class_names": [
+    "H1",
+    "H2",
+    "H3",
+    "H5",
+    "H6"
+  ],
+  "confusion_matrix": [
+    [
+      591,
+      56,
+      13,
+      1,
+      0
+    ],
+    [
+      177,
+      148,
+      19,
+      6,
+      0
+    ],
+    [
+      11,
+      10,
+      100,
+      2,
+      0
+    ],
+    [
+      7,
+      3,
+      4,
+      107,
+      2
+    ],
+    [
+      5,
+      0,
+      2,
+      1,
+      103
+    ]
+  ],
+  "best_validation_loss": 0.558651864528656,
+  "best_validation_epoch": 10
+}

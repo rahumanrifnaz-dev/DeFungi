@@ -1,0 +1,90 @@
+\section{Pretrained Lightweight Models}
+\textbf{Owner: Lavanathan.J -- 230371R}
+
+Two ImageNet-initialized lightweight architectures were evaluated using the same canonical DeFungi split membership as the custom CNNs. The Session 3 transfer-learning runs used 64$\times$64 inputs to remain consistent with the assignment image-size constraint. Each model replaced the ImageNet classifier with a five-class DeFungi head.
+
+\subsection{MobileNetV2}
+
+MobileNetV2 was trained in two stages: three frozen-head epochs at learning rate 0.001, followed by eight fine-tuning epochs of the upper 20 non-BatchNorm backbone layers at learning rate 0.0001. Validation loss selected the saved checkpoint.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.48\linewidth}
+\centering
+\includegraphics[width=\linewidth]{figures/mobilenetv2_history.png}
+\caption{MobileNetV2 learning curves.}
+\label{fig:mobilenet_history}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.48\linewidth}
+\centering
+\includegraphics[width=\linewidth]{figures/mobilenetv2_confusion_matrix.png}
+\caption{MobileNetV2 confusion matrix.}
+\label{fig:mobilenet_confusion}
+\end{subfigure}
+\caption{MobileNetV2 transfer-learning evaluation.}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{MobileNetV2 results from verified Session 3 artifacts.}
+\label{tab:mobilenet_results}
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+Input size & 64$\times$64 \\
+Total parameters & 2,264,389 \\
+Trainable parameters during fine-tuning & 1,609,285 \\
+Serialized selected model size & 22,000.13 KiB \\
+Mean epoch time & 27.5111 s \\
+Test accuracy & 0.6908 \\
+Macro precision & 0.7232 \\
+Macro recall & 0.6478 \\
+Macro F1-score & 0.6672 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{EfficientNet-B0}
+
+EfficientNet-B0 used the same two-stage strategy: three frozen-head epochs at learning rate 0.001, followed by eight fine-tuning epochs of the upper 30 non-BatchNorm backbone layers at learning rate 0.0001. The selected model was chosen using validation loss, not test performance.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.48\linewidth}
+\centering
+\includegraphics[width=\linewidth]{figures/efficientnetb0_history.png}
+\caption{EfficientNet-B0 learning curves.}
+\label{fig:efficientnet_history}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.48\linewidth}
+\centering
+\includegraphics[width=\linewidth]{figures/efficientnetb0_confusion_matrix.png}
+\caption{EfficientNet-B0 confusion matrix.}
+\label{fig:efficientnet_confusion}
+\end{subfigure}
+\caption{EfficientNet-B0 transfer-learning evaluation.}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{EfficientNet-B0 results from verified Session 3 artifacts.}
+\label{tab:efficientnet_results}
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+Input size & 64$\times$64 \\
+Total parameters & 4,055,976 \\
+Trainable parameters during fine-tuning & 2,043,925 \\
+Serialized selected model size & 32,650.04 KiB \\
+Mean epoch time & 37.1727 s \\
+Test accuracy & 0.7668 \\
+Macro precision & 0.8099 \\
+Macro recall & 0.7856 \\
+Macro F1-score & 0.7895 \\
+\bottomrule
+\end{tabular}
+\end{table}

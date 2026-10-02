@@ -1,0 +1,23 @@
+model,layer,class,output_shape,macs,note
+Model A,input_layer,InputLayer,Nonex64x64x3,0,Not included in MAC total.
+Model A,conv2d,Conv2D,Nonex64x64x32,3538944,Conv2D MACs exclude bias and activation cost.
+Model A,max_pooling2d,MaxPooling2D,Nonex32x32x32,0,Not included in MAC total.
+Model A,conv2d_1,Conv2D,Nonex32x32x64,18874368,Conv2D MACs exclude bias and activation cost.
+Model A,max_pooling2d_1,MaxPooling2D,Nonex16x16x64,0,Not included in MAC total.
+Model A,conv2d_2,Conv2D,Nonex16x16x128,18874368,Conv2D MACs exclude bias and activation cost.
+Model A,max_pooling2d_2,MaxPooling2D,Nonex8x8x128,0,Not included in MAC total.
+Model A,global_average_pooling2d,GlobalAveragePooling2D,Nonex128,0,Not included in MAC total.
+Model A,dense,Dense,Nonex64,8192,Dense MACs exclude bias and activation cost.
+Model A,dense_1,Dense,Nonex5,320,Dense MACs exclude bias and activation cost.
+Model A,TOTAL_INCLUDED,,,41296192,Conv/Dense MAC estimate only.
+Model B,input_layer_1,InputLayer,Nonex64x64x3,0,Not included in MAC total.
+Model B,separable_conv2d,SeparableConv2D,Nonex64x64x32,503808,Depthwise 110592 + pointwise 393216; excludes bias and activation cost.
+Model B,max_pooling2d_3,MaxPooling2D,Nonex32x32x32,0,Not included in MAC total.
+Model B,separable_conv2d_1,SeparableConv2D,Nonex32x32x64,2392064,Depthwise 294912 + pointwise 2097152; excludes bias and activation cost.
+Model B,max_pooling2d_4,MaxPooling2D,Nonex16x16x64,0,Not included in MAC total.
+Model B,separable_conv2d_2,SeparableConv2D,Nonex16x16x96,1720320,Depthwise 147456 + pointwise 1572864; excludes bias and activation cost.
+Model B,max_pooling2d_5,MaxPooling2D,Nonex8x8x96,0,Not included in MAC total.
+Model B,global_average_pooling2d_1,GlobalAveragePooling2D,Nonex96,0,Not included in MAC total.
+Model B,dense_2,Dense,Nonex48,4608,Dense MACs exclude bias and activation cost.
+Model B,dense_3,Dense,Nonex5,240,Dense MACs exclude bias and activation cost.
+Model B,TOTAL_INCLUDED,,,4621040,Conv/Dense MAC estimate only.

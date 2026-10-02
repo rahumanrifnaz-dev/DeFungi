@@ -1,0 +1,129 @@
+{
+  "selected_optimizer": "adam",
+  "selection_basis": "lowest final validation loss in the controlled limited-training-batch comparison using the full validation split",
+  "results": [
+    {
+      "model": "model_b",
+      "optimizer": "adam",
+      "learning_rate": 0.0010000000474974513,
+      "momentum": 0.0,
+      "epochs": 5,
+      "train_batches_per_epoch": 30,
+      "validation_batches_per_epoch": "all",
+      "elapsed_seconds": 10.135,
+      "history": {
+        "accuracy": [
+          0.48645833134651184,
+          0.5145833492279053,
+          0.4697916805744171,
+          0.48645833134651184,
+          0.4895833432674408
+        ],
+        "loss": [
+          1.532936930656433,
+          1.3313359022140503,
+          1.3532639741897583,
+          1.310250163078308,
+          1.2896475791931152
+        ],
+        "val_accuracy": [
+          0.4835405945777893,
+          0.4835405945777893,
+          0.4835405945777893,
+          0.4835405945777893,
+          0.509144127368927
+        ],
+        "val_loss": [
+          1.3843308687210083,
+          1.3429738283157349,
+          1.324224829673767,
+          1.287674069404602,
+          1.2508898973464966
+        ]
+      },
+      "note": "Controlled optimizer comparison on a limited subset; not a final model result."
+    },
+    {
+      "model": "model_b",
+      "optimizer": "sgd",
+      "learning_rate": 0.009999999776482582,
+      "momentum": 0.0,
+      "epochs": 5,
+      "train_batches_per_epoch": 30,
+      "validation_batches_per_epoch": "all",
+      "elapsed_seconds": 9.5348,
+      "history": {
+        "accuracy": [
+          0.48645833134651184,
+          0.5145833492279053,
+          0.4697916805744171,
+          0.48645833134651184,
+          0.4729166626930237
+        ],
+        "loss": [
+          1.5814701318740845,
+          1.5214871168136597,
+          1.4880729913711548,
+          1.4448168277740479,
+          1.4190224409103394
+        ],
+        "val_accuracy": [
+          0.4835405945777893,
+          0.4835405945777893,
+          0.4835405945777893,
+          0.4835405945777893,
+          0.4835405945777893
+        ],
+        "val_loss": [
+          1.553816318511963,
+          1.500921607017517,
+          1.4618748426437378,
+          1.428924560546875,
+          1.4039305448532104
+        ]
+      },
+      "note": "Controlled optimizer comparison on a limited subset; not a final model result."
+    },
+    {
+      "model": "model_b",
+      "optimizer": "sgd_momentum",
+      "learning_rate": 0.009999999776482582,
+      "momentum": 0.9,
+      "epochs": 5,
+      "train_batches_per_epoch": 30,
+      "validation_batches_per_epoch": "all",
+      "elapsed_seconds": 9.4317,
+      "history": {
+        "accuracy": [
+          0.48645833134651184,
+          0.5145833492279053,
+          0.4697916805744171,
+          0.48645833134651184,
+          0.4729166626930237
+        ],
+        "loss": [
+          1.4815680980682373,
+          1.311934232711792,
+          1.3582026958465576,
+          1.3422812223434448,
+          1.334681749343872
+        ],
+        "val_accuracy": [
+          0.4835405945777893,
+          0.4835405945777893,
+          0.4835405945777893,
+          0.4835405945777893,
+          0.4835405945777893
+        ],
+        "val_loss": [
+          1.3583084344863892,
+          1.343530297279358,
+          1.3388437032699585,
+          1.3366992473602295,
+          1.3384947776794434
+        ]
+      },
+      "note": "Controlled optimizer comparison on a limited subset; not a final model result."
+    }
+  ]
+}

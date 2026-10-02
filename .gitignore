@@ -1,6 +1,57 @@
+# Python
 __pycache__/
+*.py[cod]
 *.pyc
-.ipynb_checkpoints/
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
 .venv/
 venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Test/cache artifacts
+.pytest_cache/
+.mypy_cache/
+
+# TensorFlow temporary/checkpoint files
+*.ckpt
+checkpoint
+
+# Large model files reproduced by training scripts
+*.h5
+*.keras
+
+# Dataset: keep processed CSV metadata, exclude raw images and archives
+data/raw/
+
+# Archives
+*.zip
+*.rar
+*.7z
+
+# Local Moodle/submission packaging artifacts
+submission/
+
+# LaTeX temporary files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc

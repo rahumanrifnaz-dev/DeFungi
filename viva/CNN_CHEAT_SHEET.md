@@ -1,0 +1,27 @@
+# CNN Concept Cheat Sheet
+
+- Image: A grid of pixel values.
+- Pixel: One small picture element.
+- RGB channel: Red, green, and blue color values for an image.
+- Kernel/filter: A small matrix that scans the image to detect patterns.
+- Feature map: The output produced by applying a filter.
+- Stride: How far the filter moves each step.
+- Padding: Extra border pixels added so output size can be controlled.
+- Convolution: Sliding filters over an image to extract features.
+- Activation: A nonlinear function applied after a layer.
+- ReLU: Outputs `max(0, x)`, simple and efficient.
+- Pooling: Reduces spatial size.
+- MaxPooling: Keeps the maximum value in each small region.
+- Global Average Pooling: Averages each feature map into one value.
+- Dense layer: Fully connected layer for classification.
+- Softmax: Converts outputs into class probabilities.
+- Epoch: One full pass through the training data.
+- Batch: A small group of samples processed together.
+- Loss: Number showing how wrong the model is.
+- Optimizer: Algorithm that updates weights to reduce loss.
+- Learning rate: Step size for optimizer updates.
+- Gradient: Direction showing how weights should change.
+- Backpropagation: Method for computing gradients through the network.
+- Training: Updating weights using training data.
+- Validation: Checking performance during development without updating weights.
+- Testing: Final evaluation on unseen data.
