@@ -1,0 +1,11 @@
+layer,class,input_shape,output_shape,kernel,stride,padding,filters_or_units,activation,trainable_parameters
+input_layer_1,InputLayer,,None x 64 x 64 x 3,,,,,,0
+separable_conv2d,SeparableConv2D,,None x 64 x 64 x 32,3x3,1x1,same,32,relu,155
+max_pooling2d_3,MaxPooling2D,,None x 32 x 32 x 32,,2x2,valid,,,0
+separable_conv2d_1,SeparableConv2D,,None x 32 x 32 x 64,3x3,1x1,same,64,relu,2400
+max_pooling2d_4,MaxPooling2D,,None x 16 x 16 x 64,,2x2,valid,,,0
+separable_conv2d_2,SeparableConv2D,,None x 16 x 16 x 96,3x3,1x1,same,96,relu,6816
+max_pooling2d_5,MaxPooling2D,,None x 8 x 8 x 96,,2x2,valid,,,0
+global_average_pooling2d_1,GlobalAveragePooling2D,,None x 96,,,,,,0
+dense_2,Dense,,None x 48,,,,48,relu,4656
+dense_3,Dense,,None x 5,,,,5,softmax,245

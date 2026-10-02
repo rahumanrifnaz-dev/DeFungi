@@ -1,0 +1,4 @@
+stage,kernel,input_channels,output_channels,equivalent_standard_conv_parameters,depthwise_parameters,pointwise_plus_bias_parameters,separable_conv_parameters,parameter_reduction,reduction_percent
+stage_1_3_to_32,3x3,3,32,896,27,128,155,741,82.7
+stage_2_32_to_64,3x3,32,64,18496,288,2112,2400,16096,87.02
+stage_3_64_to_96,3x3,64,96,55392,576,6240,6816,48576,87.69
