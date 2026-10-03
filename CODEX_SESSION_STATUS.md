@@ -8,7 +8,7 @@ Final report generation from verified DeFungi artifacts.
 
 COMPLETED:
 - Read the Session 4 prompt and verified project artifacts named in it.
-- Did not retrain any model.
+- Did not retain any model.
 - Used verified Session 1, Session 2, and Session 3 outputs only.
 - Synchronized report figures with saved DeFungi evidence, including Session 3 MobileNetV2 and EfficientNet-B0 transfer-learning figures.
 - Created final comparison plots from `results/tables/final_comparison.csv`.
