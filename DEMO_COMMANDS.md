@@ -45,5 +45,13 @@ cd report
 latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 ```
 
+## DO NOT RUN DURING DEMO UNLESS REQUESTED
 
+These commands are expensive because they train models:
+
+```bash
+python -m src.train_custom --model model_a --epochs 20
+python -m src.train_custom --model model_b --epochs 20
+python -m src.train_pretrained --model mobilenetv2 --epochs 20
+python -m src.train_pretrained --model efficientnetb0 --epochs 20
 ```
