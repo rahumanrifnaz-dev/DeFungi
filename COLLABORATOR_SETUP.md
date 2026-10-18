@@ -11,7 +11,7 @@ After the shared GitHub repository is created and the first project baseline is 
 5. Add each real member using their actual GitHub username or email address.
 6. Ask each member to accept the invitation from their own GitHub account.
 
-
+Do not guess usernames. Do not add fake accounts. Each member must use their own GitHub account and their own local Git identity.
 
 ## Members
 
