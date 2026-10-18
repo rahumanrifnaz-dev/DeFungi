@@ -63,9 +63,7 @@ Each member should commit only files they actually worked on or reviewed. Sugges
 
 ### Peranavan
 
-- `Add optimizer comparison experiments`
-- `Add custom model training and evaluation`
-- `Add confusion matrices and Model A-B comparison`
+
 
 ### Lavanathan
 
