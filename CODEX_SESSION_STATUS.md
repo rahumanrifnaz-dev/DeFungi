@@ -1,3 +1,23 @@
+# Codex Session Status
+
+SESSION:
+4
+
+CURRENT PHASE:
+Final report generation from verified DeFungi artifacts.
+
+COMPLETED:
+- Read the Session 4 prompt and verified project artifacts named in it.
+- Did not retain any model.
+- Used verified Session 1, Session 2, and Session 3 outputs only.
+- Synchronized report figures with saved DeFungi evidence, including Session 3 MobileNetV2 and EfficientNet-B0 transfer-learning figures.
+- Created final comparison plots from `results/tables/final_comparison.csv`.
+- Rewrote `report/main.tex` as an original professional report for this DeFungi project.
+- Rewrote `report/references.bib`.
+- Included dataset preparation, custom CNN architectures, optimizer selection, custom model evaluation, transfer learning, final comparison, discussion, conclusion, and appendices.
+- Included equations for standard convolution parameters, depthwise-separable parameters, percentage reduction, momentum update, accuracy, macro precision, macro recall, and MAC estimates.
+- Added a reproducibility appendix mapping assignment evidence to saved paths.
+- Compiled `report/main.pdf`.
 
 VERIFIED:
 - `latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex` passes from the `report/` directory.
