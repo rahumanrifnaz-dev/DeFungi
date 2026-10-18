@@ -13,34 +13,6 @@ This file summarizes the verified artifacts used by the final EN3150 Assignment 
 - Split counts: train 6,379; validation 1,367; test 1,368.
 - Split evidence: `data/processed/*.csv`, `data/splits/*.csv`, `results/verification/split_verification.json`.
 
-## Class Counts
-
-| Class | Total | Train | Validation | Test |
-|---|---:|---:|---:|---:|
-| H1 | 4,404 | 3,082 | 661 | 661 |
-| H2 | 2,334 | 1,634 | 350 | 350 |
-| H3 | 819 | 573 | 123 | 123 |
-| H5 | 818 | 573 | 122 | 123 |
-| H6 | 739 | 517 | 111 | 111 |
-
-## Custom Models
-
-| Model | Parameters | Serialized size (KiB) | Mean epoch time (s) | Test accuracy | Macro precision | Macro recall | Macro F1 |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Model A | 101,829 | 1,241.37 | 12.8958 | 0.695906432748538 | 0.7057296614536502 | 0.6647908943697292 | 0.6749622895035646 |
-| Model B | 14,272 | 219.41 | 7.8730 | 0.6483918128654971 | 0.6430123008645605 | 0.6202374219855493 | 0.6209343583512273 |
-
-Custom evidence:
-
-- `results/raw/model_a/`
-- `results/raw/model_b/`
-- `results/tables/custom_models.csv`
-- `results/tables/custom_latency.csv`
-- `results/tables/custom_model_macs.csv`
-
-## Optimizer Selection
-
-The controlled optimizer pilot used Model B for five epochs with 30 training batches per epoch and the full validation split. Adam was selected by lowest final validation loss.
 
 | Optimizer | Learning rate | Momentum | Final validation loss | Final validation accuracy |
 |---|---:|---:|---:|---:|
