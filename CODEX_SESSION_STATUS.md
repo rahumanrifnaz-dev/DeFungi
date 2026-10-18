@@ -1,7 +1,6 @@
 # Codex Session Status
 
-SESSION:
-Final GitHub push session
+
 
 GITHUB REPOSITORY:
 https://github.com/rahumanrifnaz-dev/DeFungi
