@@ -212,7 +212,13 @@ python -m src.session3_transfer finalize --warmup-runs 20 --timed-runs 200
 
 The previous demo file listed `src.train_pretrained --epochs 20` for the pretrained models. That is **not the final report's recorded two-stage transfer-learning workflow**, so this version uses the documented Session 3 commands instead. The commands are provided for reference and have **not** been executed in preparing this document.
 
+## 6. Troubleshooting
 
+- **`ModuleNotFoundError`:** Activate the project environment, install `requirements.txt`, and run from the repository root.
+- **Dataset missing:** Raw DeFungi images are not stored in Git; follow `data/README.md` before running dataset-dependent checks.
+- **Saved file missing:** Verify that `results/` artifacts were included in your local checkout; do not present a missing artifact as verified by a fresh run.
+- **No GPU:** The documented environment had no available GPU. Existing results can still be inspected without one.
+- **LaTeX command not found:** Install a LaTeX distribution with `latexmk`, or present the existing PDF instead.
 
 ---
 
