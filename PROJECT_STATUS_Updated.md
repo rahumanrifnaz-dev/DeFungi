@@ -237,21 +237,4 @@ The uploaded final report documents completed custom-model experiments, optimize
   - `results/tables/final_comparison.csv`
   - `results/tables/session3_transfer_tradeoff_notes.md`
 
-## LaTeX Verification
 
-- Command used: `latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex`
-- Final result: PASS
-- Current uploaded submission PDF pages: **14** (cover, contents, abstract, 11 numbered report pages plus appendix content). The older 10-page count in the workspace status is superseded for this uploaded PDF.
-- Output page size: A4
-- Final log check: no LaTeX errors, no citation warnings, no undefined references, no overfull boxes.
-
-## Remaining Work
-
-1. Rename the temporary submission files using the lecturer's required group-number convention before Moodle upload.
-2. Upload to Moodle manually and reopen the uploaded files to verify integrity.
-3. Verify that the existing GitHub remote has received the intended commits and that README links and report artifacts display correctly; the uploaded PDF does not establish remote push status.
-
-## Human Action Required
-
-- Confirm GitHub push/publication and Moodle submission outside this local review.
-- Confirm the group-number filename convention required by the lecturer before upload.
