@@ -8,11 +8,7 @@ This workflow is for a shared repository with four real group members. Each memb
 2. Do not initialize the GitHub repository with a README, `.gitignore`, or license if the local project already contains them.
 3. Keep the repository private or public according to the course submission requirement.
 
-## 2. Add Collaborators
 
-1. Open the GitHub repository settings.
-2. Add the other three members as collaborators.
-3. Each member accepts the GitHub invitation from their own account.
 
 ## 3. First Local Push
 
