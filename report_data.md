@@ -87,3 +87,7 @@ Evidence: `results/tables/final_comparison.csv`.
 
 ## Report Artifacts
 
+- Final LaTeX source: `report/main.tex`.
+- Bibliography: `report/references.bib`.
+- Final PDF: `report/main.pdf`.
+- Report figures: `report/figures/`.
