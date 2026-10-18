@@ -27,9 +27,7 @@ SUBMISSION AUDIT: PASS
 SUBMISSION PACKAGE: READY
 MOODLE SUBMISSION: NOT YET DONE
 
-## Current Milestone
 
-The EN3150 Assignment 03 implementation, experiments, final audit, LaTeX report, GitHub preparation documents, and Moodle-ready submission package are complete. Git is initialized locally on the `main` branch, and `origin` is connected to `https://github.com/rahumanrifnaz-dev/DeFungi.git`. The final push attempt was blocked because GitHub HTTPS authentication was not available in the non-interactive environment.
 
 ## Completed Work
 
