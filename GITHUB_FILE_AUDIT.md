@@ -51,11 +51,7 @@ This audit records what should be committed to the public EN3150 Assignment 03 r
 | `report/main.pdf` | 1.0 MB | COMMIT | Final assignment report. |
 | `data/processed/splits.csv` | 610 KB | COMMIT | Lightweight canonical split metadata. |
 
-## Safety Scan Summary
 
-- Sensitive-value scan: no credential files or private assignments found outside ignored directories.
-- Machine-specific path scan: no repository files selected for commit contain local absolute user-home paths.
-- Neighbor-report scan: no neighboring-group identifiers or dataset/report terms were found in the final report or selected project content.
 
 ## Final Decision
 
