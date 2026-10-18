@@ -11,22 +11,6 @@ Responsible for:
 - Model A files
 - Corresponding report section
 
-Actual files:
-
-- `src/data_prepare.py`
-- `src/datasets.py`
-- `src/config.py`
-- `src/models.py`
-- `data/processed/splits.csv`
-- `data/processed/train.csv`
-- `data/processed/validation.csv`
-- `data/processed/test.csv`
-- `results/metrics/dataset_summary.json`
-- `results/metrics/model_parameter_checks.json`
-- `results/metrics/model_a_summary.txt`
-- `report/sections/02_dataset.tex`
-- `report/sections/03_model_a.tex`
-- `report/figures/class_distribution.png`
 
 ## PANUHARAN.S -- 230462X
 
