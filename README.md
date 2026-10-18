@@ -131,8 +131,6 @@ Verified lightweight evidence is included in:
 Run commands from the project root:
 
 ```bash
-python -m src.verify_imports
-python -m src.verify_environment
 python -m src.data_prepare --data-dir data/raw/defungi
 python -m src.verify_pipeline
 python -m src.model_checks

@@ -45,6 +45,9 @@
         Peranavan.K & 230474K \\
         Rifnaz.K.R.M & 230550P \\
     \end{tabular}
+    \vspace{0.8cm}
+
+    {\small Project repository: \url{https://github.com/rahumanrifnaz-dev/DeFungi}\par}
     \vfill
 \end{titlepage}
 
@@ -231,6 +234,8 @@ SGD + momentum & 0.010 & 0.9 & 1.3385 & 0.4835 \\
 \end{tabular}
 \end{table}
 
+Compared with plain SGD, momentum lowered the pilot's final validation loss from 1.4039 to 1.3385, while validation accuracy stayed at 0.4835. Accumulating updates can smooth progress in consistent gradient directions, but this short pilot showed no accuracy gain over plain SGD. Adam had both the lowest validation loss and the highest validation accuracy in this comparison. These conclusions are limited to the pilot settings and five-epoch duration.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.78\linewidth]{figures/optimizer_comparison.png}
@@ -393,16 +398,17 @@ EfficientNet-B0 & 64$\times$64 & 3 & 8 & 0.001 & 0.0001 \\
 
 \begin{table}[H]
 \centering
-\caption{Verified transfer-learning test metrics.}
+\caption{Verified transfer-learning test metrics, total parameter counts, and serialized model sizes. Model size is shown in decimal MB (bytes divided by $10^6$).}
 \label{tab:pretrained_metrics}
-\begin{tabular}{lrrrr}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lrrrrrr}
 \toprule
-Model & Accuracy & Macro precision & Macro recall & Macro F1 \\
+Model & Parameters & Size (MB) & Accuracy & Macro precision & Macro recall & Macro F1 \\
 \midrule
-MobileNetV2 & 0.6908 & 0.7232 & 0.6478 & 0.6672 \\
-EfficientNet-B0 & 0.7668 & 0.8099 & 0.7856 & 0.7895 \\
+MobileNetV2 & 2264389 & 22.53 & 0.6908 & 0.7232 & 0.6478 & 0.6672 \\
+EfficientNet-B0 & 4055976 & 33.43 & 0.7668 & 0.8099 & 0.7856 & 0.7895 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{table}
 
 EfficientNet-B0 gave the strongest test accuracy and macro recall of all four evaluated models. Its confusion matrix shows stronger recognition of H3, H5, and H6 than the custom models, but H2 remains challenging: 177 H2 test samples were still classified as H1. MobileNetV2 was close to Model A in accuracy but did not improve over Model A under the verified 64$\times$64 transfer-learning setup.
