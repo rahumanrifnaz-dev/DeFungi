@@ -1,6 +1,5 @@
 # GitHub File Audit
 
-This audit records what should be committed to the public EN3150 Assignment 03 repository and what must remain local or ignored.
 
 ## Commit / Ignore Decisions
 
