@@ -74,4 +74,20 @@ Evidence:
 - `results/tables/pretrained_transfer_macs.csv`
 - `results/tables/pretrained_transfer_latency.csv`
 
+## Final Comparison
 
+| Model | Parameters | Serialized size (KiB) | MACs | CPU mean latency (ms) | CPU p95 latency (ms) | Test accuracy | Macro precision | Macro recall |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Model A | 101,829 | 1,241.37 | 41,296,192 | 2.8241097353748046 | 3.2042405051470264 | 0.695906432748538 | 0.7057296614536502 | 0.6647908943697292 |
+| Model B | 14,272 | 219.41 | 4,621,040 | 1.592217214492848 | 2.265584255655994 | 0.6483918128654971 | 0.6430123008645605 | 0.6202374219855493 |
+| MobileNetV2 | 2,264,389 | 22,000.13 | 24,454,912 | 170.10653118071787 | 198.20382995167165 | 0.6907894736842105 | 0.723171326344764 | 0.6478240370391951 |
+| EfficientNet-B0 | 4,055,976 | 32,650.04 | 31,972,992 | 322.2855200798949 | 357.6918174076127 | 0.7668128654970761 | 0.809860625155838 | 0.7855623497534866 |
+
+Evidence: `results/tables/final_comparison.csv`.
+
+## Report Artifacts
+
+- Final LaTeX source: `report/main.tex`.
+- Bibliography: `report/references.bib`.
+- Final PDF: `report/main.pdf`.
+- Report figures: `report/figures/`.
