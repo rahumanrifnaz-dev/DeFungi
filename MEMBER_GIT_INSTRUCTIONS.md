@@ -1,4 +1,3 @@
-# Member Git Instructions
 
 These instructions are for real contributions from the four EN3150 Assignment 03 group members. Do not impersonate another member, do not fake old dates, and do not create meaningless commits just to generate activity.
 
