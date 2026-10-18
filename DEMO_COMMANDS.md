@@ -6,7 +6,7 @@ Run these from the project root. They do not retrain models.
 
 ```bash
 python src/demo.py
-```
+
 
 ## Verify Imports
 
