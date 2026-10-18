@@ -189,6 +189,28 @@ This compiles the report; it does **not** train models. The uploaded final submi
 
 ## 5. Training commands — NOT for live demo
 
+> **Do not run these unless a new training experiment is explicitly required.** They can be time-consuming, may overwrite outputs, and require the dataset and dependencies.
+
+**Custom CNNs (20 epochs each):**
+
+```bash
+python -m src.train_custom --model model_a --epochs 20
+python -m src.train_custom --model model_b --epochs 20
+```
+
+**Pretrained models — report-consistent Session 3 workflow:**
+
+```bash
+python -m src.session3_transfer train --models mobilenetv2 efficientnetb0 --head-epochs 3 --fine-tune-epochs 8 --batch-size 32 --image-size 64 64
+```
+
+**Post-training evaluation/finalization** (not necessary for a saved-results demo):
+
+```bash
+python -m src.session3_transfer finalize --warmup-runs 20 --timed-runs 200
+```
+
+The previous demo file listed `src.train_pretrained --epochs 20` for the pretrained models. That is **not the final report's recorded two-stage transfer-learning workflow**, so this version uses the documented Session 3 commands instead. The commands are provided for reference and have **not** been executed in preparing this document.
 
 ## 6. Troubleshooting
 
