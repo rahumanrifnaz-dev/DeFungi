@@ -117,7 +117,16 @@ Status: PASS.
 
 ## Reproducibility Checks
 
-
+| Check | Status |
+|---|---|
+| `python -m src.verify_imports` | PASS |
+| `python -m src.verify_environment` | PASS |
+| `python -m src.train_custom --help` | PASS |
+| `python -m src.train_pretrained --help` | PASS |
+| `python -m src.optimizer_experiment --help` | PASS |
+| `python -m compileall -q src` | PASS |
+| Canonical split loading and overlap check | PASS |
+| Final LaTeX build | PASS |
 
 ## PDF Final Check
 
