@@ -148,12 +148,7 @@ The uploaded final report documents completed custom-model experiments, optimize
 
 ## Optimizer Experiment
 
-- Selected optimizer: Adam
-- Selection basis: lowest final validation loss in the controlled limited-training-batch comparison using the full validation split.
-- Adam final validation loss: 1.2508898973464966
-- SGD final validation loss: 1.4039305448532104
-- SGD with momentum final validation loss: 1.3384947776794434
-- These optimizer-comparison metrics are not final model results.
+
 
 ## Final Report Artifacts
 
