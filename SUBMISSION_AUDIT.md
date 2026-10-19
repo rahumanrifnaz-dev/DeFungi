@@ -28,12 +28,13 @@ This audit was performed for the final Moodle preparation phase. No model retrai
 | Model B | Parameter calculation included | PASS | `report/sections/04_model_b.tex`. |
 | Model B | Total trainable parameters <= 100,000 | PASS | 14,272 parameters. |
 | Model B | Efficiency explanation included | PASS | Model B and final comparison report sections. |
+| Optimizer | Chosen optimizer stated | PASS | Adam. |
+| Optimizer | Learning rate stated | PASS | 0.001. |
+| Optimizer | Reason stated | PASS | Lowest final validation loss. |
+| Optimizer | Compared with standard SGD | PASS | Optimizer table. |
+| Optimizer | Compared with SGD + Momentum | PASS | Optimizer table. |
+| Optimizer | Momentum explained | PASS | Momentum equations in report. |
 
-| Training | Model A trained at least 20 epochs | PASS | Saved `model_a_adam_metrics.json`. |
-| Training | Model B trained at least 20 epochs | PASS | Saved `model_b_adam_metrics.json`. |
-| Training | Training loss recorded | PASS | History CSV/JSON files and plots. |
-| Training | Validation loss recorded | PASS | History CSV/JSON files and plots. |
-| Training | Loss plots included | PASS | `results/figures/` and `report/figures/`. |
 | Evaluation | Test accuracy Model A | PASS | 0.695906432748538. |
 | Evaluation | Test accuracy Model B | PASS | 0.6483918128654971. |
 | Evaluation | Confusion matrix Model A | PASS | Metrics JSON and figure. |
