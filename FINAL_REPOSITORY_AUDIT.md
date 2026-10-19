@@ -67,6 +67,3 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 
 The local repository contains the complete final project, but `origin/main` is behind local `main`. A previous push attempt failed because GitHub HTTPS authentication was not available in the non-interactive environment. After authenticating GitHub locally, run:
 
-```bash
-git push origin main
-```
