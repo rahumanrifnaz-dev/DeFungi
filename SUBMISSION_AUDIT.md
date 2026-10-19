@@ -34,13 +34,12 @@ This audit was performed for the final Moodle preparation phase. No model retrai
 | Optimizer | Compared with standard SGD | PASS | Optimizer table. |
 | Optimizer | Compared with SGD + Momentum | PASS | Optimizer table. |
 | Optimizer | Momentum explained | PASS | Momentum equations in report. |
+| Training | Model A trained at least 20 epochs | PASS | Saved `model_a_adam_metrics.json`. |
+| Training | Model B trained at least 20 epochs | PASS | Saved `model_b_adam_metrics.json`. |
+| Training | Training loss recorded | PASS | History CSV/JSON files and plots. |
+| Training | Validation loss recorded | PASS | History CSV/JSON files and plots. |
+| Training | Loss plots included | PASS | `results/figures/` and `report/figures/`. |
 
-| Evaluation | Test accuracy Model A | PASS | 0.695906432748538. |
-| Evaluation | Test accuracy Model B | PASS | 0.6483918128654971. |
-| Evaluation | Confusion matrix Model A | PASS | Metrics JSON and figure. |
-| Evaluation | Confusion matrix Model B | PASS | Metrics JSON and figure. |
-| Evaluation | Precision | PASS | Macro precision reported for all models. |
-| Evaluation | Recall | PASS | Macro recall reported for all models. |
 | Model A vs B | Trainable parameters | PASS | Comparison table. |
 | Model A vs B | Estimated model size KB | PASS | 397.77 KB and 55.75 KB. |
 | Model A vs B | Training time per epoch | PASS | 12.8958 s and 7.8730 s. |
