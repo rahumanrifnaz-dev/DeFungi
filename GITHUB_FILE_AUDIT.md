@@ -35,21 +35,7 @@ This audit records what should be committed to the public EN3150 Assignment 03 r
 | LaTeX aux files | small | IGNORE | Generated build files such as `.aux`, `.bbl`, `.log`, `.out`, `.toc`. |
 | Archives `*.zip`, `*.rar`, `*.7z` | variable | IGNORE | Avoid accidental dataset/submission archive uploads. |
 
-## Large File Review
 
-| File | Size | Decision | Reason |
-|---|---:|---|---|
-| `data/raw/defungi.zip` | 156 MB | IGNORE | Raw dataset archive; users download from UCI. |
-| `results/raw/efficientnetb0/efficientnetb0_best_validation.keras` | 33.4 MB | IGNORE | Reproducible checkpoint; metrics/CSV evidence committed instead. |
-| `results/raw/efficientnetb0/efficientnetb0_selected.keras` | 33.4 MB | IGNORE | Reproducible selected model; metrics/CSV evidence committed instead. |
-| `results/raw/mobilenetv2/mobilenetv2_best_validation.keras` | 22.5 MB | IGNORE | Reproducible checkpoint; metrics/CSV evidence committed instead. |
-| `results/raw/mobilenetv2/mobilenetv2_selected.keras` | 22.5 MB | IGNORE | Reproducible selected model; metrics/CSV evidence committed instead. |
-| `results/models/efficientnetb0_transfer.keras` | 17.1 MB | IGNORE | Reproducible older model artifact. |
-| `results/models/mobilenetv2_transfer.keras` | 9.7 MB | IGNORE | Reproducible older model artifact. |
-| `results/models/model_a_adam.keras` | 1.3 MB | IGNORE | Reproducible custom model artifact. |
-| `results/models/model_b_adam.keras` | 225 KB | IGNORE | Reproducible custom model artifact. |
-| `report/main.pdf` | 1.0 MB | COMMIT | Final assignment report. |
-| `data/processed/splits.csv` | 610 KB | COMMIT | Lightweight canonical split metadata. |
 
 ## Safety Scan Summary
 
