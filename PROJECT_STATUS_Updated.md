@@ -128,7 +128,23 @@ The uploaded final report documents completed custom-model experiments, optimize
 
 ## Model Size And Parameters
 
-
+- Model A:
+  - Trainable parameters: 101,829
+  - Estimated FP32 parameter storage: 397.77 KB
+- Model B:
+  - Trainable parameters: 14,272
+  - Parameter limit: <= 100,000
+  - Estimated FP32 parameter storage: 55.75 KB
+- MobileNetV2 transfer:
+  - Total parameters: 2,264,389
+  - Trainable parameters during fine-tuning: 1,609,285
+  - Saved selected model size: 22,000.13 KiB
+  - Transfer strategy: 3 frozen-head epochs at LR 0.001, then 8 fine-tune epochs of the upper 20 non-BatchNorm backbone layers at LR 0.0001.
+- EfficientNet-B0 transfer:
+  - Total parameters: 4,055,976
+  - Trainable parameters during fine-tuning: 2,043,925
+  - Saved selected model size: 32,650.04 KiB
+  - Transfer strategy: 3 frozen-head epochs at LR 0.001, then 8 fine-tune epochs of the upper 30 non-BatchNorm backbone layers at LR 0.0001.
 
 ## Optimizer Experiment
 
